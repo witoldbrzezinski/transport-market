@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS customers;
 
 CREATE TABLE customers
 (
-	id SERIAL PRIMARY KEY,
+	customer_id SERIAL PRIMARY KEY,
 	name CHARACTER VARYING(255),
 	country CHARACTER VARYING(100)
 );

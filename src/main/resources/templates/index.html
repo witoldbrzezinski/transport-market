@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Transport Market</title>
@@ -36,7 +36,22 @@
     </form>
   
 </nav>
-
-
+	<table>
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Country </th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr th:if="${customers.empty}">
+            <td colspan="2"> No Books Available </td>
+        </tr>
+        <tr th:each="customer : ${customers}">
+            <td><span th:text="${customer.name}"> Name </span></td>
+            <td><span th:text="${customer.country}"> Country </span></td>
+        </tr>
+    </tbody>
+</table>
 </body>
 </html>
