@@ -43,8 +43,17 @@
 	<table class="table table-striped table-hover">
     <thead>
         <tr>
+        	<th> # </th>
             <th> Name </th>
-     
+            <th> Loading date </th>
+     		<th> Loading city </th>
+     		<th> Loading postcode </th>
+     		<th> Unloading date </th>
+     		<th> Unloading city </th>
+     		<th> unloading postcode </th>
+     		<th> Weight [t] </th>
+     		<th> Load Type </th>
+     		<th> Price [PLN] </th>
         </tr>
     </thead>
     <tbody>
@@ -52,7 +61,17 @@
             <td colspan="2"> No Loads Available </td>
         </tr>
         <tr th:each="load : ${loads}">
+         	<td><span th:text="${load.load_id}"> # </span></td>
             <td><span th:text="${load.name}"> Name </span></td>
+            <td><span th:text="${#temporals.format(load.loadingDate, 'yyyy-MM-dd')}"> Loading date </span></td>
+            <td><span th:text="${load.loadingCity}"> Loading City </span></td>
+            <td><span th:text="${load.loadingPostcode}"> Loading Postcode </span></td>
+            <td><span th:text="${#temporals.format(load.unloadingDate, 'yyyy-MM-dd')}"> Unloading date </span></td>
+            <td><span th:text="${load.unloadingCity}"> Unloading City </span></td>
+            <td><span th:text="${load.unloadingPostcode}"> Unloading Postcode </span></td>
+            <td><span th:text="${#numbers.formatDecimal(load.weight,0,3,'COMMA')}"> Weight </span></td>
+            <td><span th:text="${load.loadType}"> Load Type </span></td>
+            <td><span th:text="${#numbers.formatDecimal(load.price,0,2,'COMMA')}"> Price </span></td>
         </tr>
     </tbody>
 </table>

@@ -45,7 +45,7 @@ public class Load {
 	@Column(name="loadType")
 	private String loadType;
 	
-	@Column(name="prince_in_pln")
+	@Column(name="price_in_pln")
 	private String price;
 	
 	public Load() {
