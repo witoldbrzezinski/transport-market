@@ -1,1 +1,7 @@
 @charset "UTF-8";
+
+.centered-div {
+	margin: auto;
+  	width: 50%;
+	text-align: center;
+}
