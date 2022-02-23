@@ -26,5 +26,9 @@ public class LoadService {
             return new ArrayList<Load>();
         }
     }
+    
+    public void saveLoad(Load load) {
+    	repository.save(load);
+    }
 
 }

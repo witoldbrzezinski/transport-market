@@ -1,5 +1,6 @@
 package pl.witoldbrzezinski.transportmarket.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="loads")
@@ -22,6 +25,7 @@ public class Load {
 	private String name;
 	
 	@Column(name="loading_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime loadingDate;
 	
 	@Column(name="loading_city")
@@ -31,6 +35,7 @@ public class Load {
 	private String loadingPostcode;
 	
 	@Column(name="unloading_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime unloadingDate;
 	
 	@Column(name="unloading_city")
@@ -40,21 +45,21 @@ public class Load {
 	private String unloadingPostcode;
 	
 	@Column(name="weight_in_tones")
-	private String weight;
+	private BigDecimal weight;
 	
 	@Column(name="loadType")
 	private String loadType;
 	
 	@Column(name="price_in_pln")
-	private String price;
+	private BigDecimal price;
 	
 	public Load() {
 		
 	}
 
 	public Load(String name, LocalDateTime loadingDate, String loadingCity, String loadingPostcode,
-			LocalDateTime unloadingDate, String unloadingCity, String unloadingPostcode, String weight, String loadType,
-			String price) {
+			LocalDateTime unloadingDate, String unloadingCity, String unloadingPostcode, BigDecimal weight, String loadType,
+			BigDecimal price) {
 		this.name = name;
 		this.loadingDate = loadingDate;
 		this.loadingCity = loadingCity;
@@ -131,11 +136,11 @@ public class Load {
 		this.unloadingPostcode = unloadingPostcode;
 	}
 
-	public String getWeight() {
+	public BigDecimal getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(BigDecimal weight) {
 		this.weight = weight;
 	}
 
@@ -147,11 +152,11 @@ public class Load {
 		this.loadType = loadType;
 	}
 
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 
