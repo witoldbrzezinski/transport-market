@@ -19,7 +19,7 @@ public class Load {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int load_id;
+    private Long load_id;
 	
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -72,11 +72,11 @@ public class Load {
 		this.price = price;
 	}
 
-	public int getLoad_id() {
+	public Long getLoad_id() {
 		return load_id;
 	}
 
-	public void setLoad_id(int load_id) {
+	public void setLoad_id(Long load_id) {
 		this.load_id = load_id;
 	}
 

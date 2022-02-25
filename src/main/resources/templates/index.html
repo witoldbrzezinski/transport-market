@@ -37,6 +37,7 @@
      		<th> Weight [t] </th>
      		<th> Load Type </th>
      		<th> Price [PLN] </th>
+     		<th> Action </th>
         </tr>
     </thead>
     <tbody>
@@ -55,6 +56,7 @@
             <td><span th:text="${#numbers.formatDecimal(load.weight,0,3,'COMMA')}"> Weight </span></td>
             <td><span th:text="${load.loadType}"> Load Type </span></td>
             <td><span th:text="${#numbers.formatDecimal(load.price,0,2,'COMMA')}"> Price </span></td>
+            <td><span><a th:href="@{/updateLoad/{loadId}(loadId=${load.load_id})}"></span>Update</a>
         </tr>
     </tbody>
 </table>

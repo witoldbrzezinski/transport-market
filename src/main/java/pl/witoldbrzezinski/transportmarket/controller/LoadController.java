@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import pl.witoldbrzezinski.transportmarket.entity.Load;
@@ -34,12 +36,29 @@ public class LoadController {
 		Load load = new Load();
 		model.addAttribute("load",load);
 		
-		return "new-load.html";
+		return "add-load.html";
 	}
 	
 	@PostMapping("confirmLoadAdded")
 	public String saveLoad(@ModelAttribute("load") Load load) {
-		System.out.println(load);
+		service.saveLoad(load);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/updateLoad/{loadId}")
+	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
+		
+		Load load = service.getLoad(loadId);
+		model.addAttribute("load",load);
+		
+		return "update-load.html";
+	}
+	
+	@PostMapping("updateLoadConfirm/{loadId}")
+	public String updateLoadConfrim(@PathVariable("loadId") long loadId, Model model, BindingResult result) {
+//		service.updateLoadById(loadId);
+		Load load = service.getLoad(loadId);
+		model.addAttribute("load",load);
 		service.saveLoad(load);
 		return "redirect:/";
 	}

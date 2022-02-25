@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.witoldbrzezinski.transportmarket.entity.Customer;
 import pl.witoldbrzezinski.transportmarket.entity.Load;
 import pl.witoldbrzezinski.transportmarket.repository.LoadRepository;
 
@@ -30,5 +29,17 @@ public class LoadService {
     public void saveLoad(Load load) {
     	repository.save(load);
     }
+
+	public Load getLoad(long loadId) {
+		// TODO Auto-generated method stub
+		return repository.getById(loadId);
+	}
+
+
+	public void updateLoadById(Long load_id) {
+		
+		Load load = repository.getById(load_id);
+		repository.save(load);
+	}
 
 }
