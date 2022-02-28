@@ -37,7 +37,8 @@
      		<th> Weight [t] </th>
      		<th> Load Type </th>
      		<th> Price [PLN] </th>
-     		<th> Action </th>
+     		<th> Update </th>
+     		<th> Delete </th>
         </tr>
     </thead>
     <tbody>
@@ -57,6 +58,7 @@
             <td><span th:text="${load.loadType}"> Load Type </span></td>
             <td><span th:text="${#numbers.formatDecimal(load.price,0,2,'COMMA')}"> Price </span></td>
             <td><span><a th:href="@{/updateLoad/{loadId}(loadId=${load.loadId})}"></span>Update</a>
+            <td><span><a th:href="@{/deleteLoad/{loadId}(loadId=${load.loadId})}"></span>Delete</a>
         </tr>
     </tbody>
 </table>

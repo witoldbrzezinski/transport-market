@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.witoldbrzezinski.transportmarket.entity.Load;
 import pl.witoldbrzezinski.transportmarket.service.LoadService;
@@ -56,10 +56,14 @@ public class LoadController {
 	
 	@PostMapping("updateLoadConfirm/{loadId}")
 	public String updateLoadConfrim(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
-//		service.updateLoadById(loadId);
 		service.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
-
+	
+	@RequestMapping("deleteLoad/{loadId}")
+	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
+		service.deleteLoad(load);
+		return "redirect:/";
+	}
 
 }

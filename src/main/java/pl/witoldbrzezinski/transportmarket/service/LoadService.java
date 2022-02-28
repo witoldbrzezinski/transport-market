@@ -34,7 +34,10 @@ public class LoadService {
 		// TODO Auto-generated method stub
 		return repository.getById(loadId);
 	}
-
+	
+	public void deleteLoad(Load load) {
+		repository.delete(load);
+	}
 
 
 }
