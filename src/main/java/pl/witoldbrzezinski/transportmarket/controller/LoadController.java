@@ -41,7 +41,7 @@ public class LoadController {
 	
 	@PostMapping("confirmLoadAdded")
 	public String saveLoad(@ModelAttribute("load") Load load) {
-		service.saveLoad(load);
+		service.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
 	
@@ -55,11 +55,9 @@ public class LoadController {
 	}
 	
 	@PostMapping("updateLoadConfirm/{loadId}")
-	public String updateLoadConfrim(@PathVariable("loadId") long loadId, Model model, BindingResult result) {
+	public String updateLoadConfrim(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
 //		service.updateLoadById(loadId);
-		Load load = service.getLoad(loadId);
-		model.addAttribute("load",load);
-		service.saveLoad(load);
+		service.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
 

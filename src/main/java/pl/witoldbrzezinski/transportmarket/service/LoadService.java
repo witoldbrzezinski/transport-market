@@ -26,7 +26,7 @@ public class LoadService {
         }
     }
     
-    public void saveLoad(Load load) {
+    public void saveOrUpdateLoad(Load load) {
     	repository.save(load);
     }
 
@@ -36,10 +36,5 @@ public class LoadService {
 	}
 
 
-	public void updateLoadById(Long load_id) {
-		
-		Load load = repository.getById(load_id);
-		repository.save(load);
-	}
 
 }

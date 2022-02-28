@@ -10,8 +10,7 @@
 
 	<div id="container">
 		<h3>Update Load</h3>
-		<form action="#" th:action="@{/updateLoadConfirm/{loadId}(loadId=${load.load_id})}" th:object="${load}" method="post">
-		<input type="hidden" name="id" th:value="${load.load_id}" readonly="">
+		<form action="#" th:action="@{/updateLoadConfirm/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post">
 		<div class="col-md-6 form-group">
 		<label>Name:</label>
     	<input type="text" id="name" name="name" class="form-control" th:field="*{name}" />

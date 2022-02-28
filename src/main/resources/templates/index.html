@@ -45,7 +45,7 @@
             <td colspan="2"> No Loads Available </td>
         </tr>
         <tr th:each="load : ${loads}">
-         	<td><span th:text="${load.load_id}"> # </span></td>
+         	<td><span th:text="${load.loadId}"> # </span></td>
             <td><span th:text="${load.name}"> Name </span></td>
             <td><span th:text="${#temporals.format(load.loadingDate, 'yyyy-MM-dd')}"> Loading date </span></td>
             <td><span th:text="${load.loadingCity}"> Loading City </span></td>
@@ -56,7 +56,7 @@
             <td><span th:text="${#numbers.formatDecimal(load.weight,0,3,'COMMA')}"> Weight </span></td>
             <td><span th:text="${load.loadType}"> Load Type </span></td>
             <td><span th:text="${#numbers.formatDecimal(load.price,0,2,'COMMA')}"> Price </span></td>
-            <td><span><a th:href="@{/updateLoad/{loadId}(loadId=${load.load_id})}"></span>Update</a>
+            <td><span><a th:href="@{/updateLoad/{loadId}(loadId=${load.loadId})}"></span>Update</a>
         </tr>
     </tbody>
 </table>

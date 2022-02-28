@@ -19,7 +19,7 @@ public class Load {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long load_id;
+    private Long loadId;
 	
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -72,12 +72,12 @@ public class Load {
 		this.price = price;
 	}
 
-	public Long getLoad_id() {
-		return load_id;
+	public Long getLoadId() {
+		return loadId;
 	}
 
-	public void setLoad_id(Long load_id) {
-		this.load_id = load_id;
+	public void setLoadId(Long loadId) {
+		this.loadId = loadId;
 	}
 
 	public String getName() {
@@ -162,7 +162,7 @@ public class Load {
 
 	@Override
 	public String toString() {
-		return "Load [load_id=" + load_id + ", name=" + name + ", loadingDate=" + loadingDate + ", loadingCity="
+		return "Load [load_id=" + loadId + ", name=" + name + ", loadingDate=" + loadingDate + ", loadingCity="
 				+ loadingCity + ", loadingPostcode=" + loadingPostcode + ", unloadingDate=" + unloadingDate
 				+ ", unloadingCity=" + unloadingCity + ", unloadingPostcode=" + unloadingPostcode + ", weight=" + weight
 				+ ", loadType=" + loadType + ", price=" + price + "]";
