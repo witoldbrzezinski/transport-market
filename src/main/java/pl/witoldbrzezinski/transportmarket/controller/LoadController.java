@@ -45,7 +45,7 @@ public class LoadController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/updateLoad/{loadId}")
+	@RequestMapping("/updateLoad/{loadId}")
 	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
 		
 		Load load = service.getLoad(loadId);
