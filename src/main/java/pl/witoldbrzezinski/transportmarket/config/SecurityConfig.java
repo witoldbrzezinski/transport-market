@@ -1,9 +1,9 @@
 package pl.witoldbrzezinski.transportmarket.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -14,17 +14,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 			http
-			.csrf().disable()
-			.authorizeRequests()
-				.mvcMatchers(HttpMethod.GET, "/").permitAll()	
+				.csrf().disable()
+				.authorizeRequests()
 				 .anyRequest().authenticated()
-				 .and()
+				.and()
 				 .formLogin()
 			     .loginPage("/login").permitAll()
 //			     .loginProcessingUrl("/login")
 			     .defaultSuccessUrl("/", true)
 //			     .failureUrl("/login.html?error=true")
-			     .and()
+			    .and()
+			     .logout()
+			     .logoutUrl("/logout")
+			     .logoutSuccessUrl("/login")
+			    .and()
 				 .httpBasic();
 	}
 
@@ -40,7 +43,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	      .roles("ADMIN");
 	  }
 	
+	   @Override
+	    public void configure(WebSecurity web) throws Exception {
+	        //Web resources
+	        web.ignoring().antMatchers("/css/**");
+	    }
 	
+	  
+	  
+	  
 }
 
 

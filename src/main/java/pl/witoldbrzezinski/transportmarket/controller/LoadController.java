@@ -21,6 +21,7 @@ public class LoadController {
 	@Autowired
 	LoadService service;
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/")
 	public String index(Model model) {
 		

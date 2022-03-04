@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,10 +19,10 @@
         <a class="nav-link" href="#">Register</a>
      </li>
      <li class="nav-item">
-        <a class="nav-link" href="#">Log in</a>
+        <a class="nav-link" th:href="@{/login}">Log in</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Log out</a>
+        <a class="nav-link" th:href="@{/logout}">Log out</a>
       </li>
     </ul>
     </div>
