@@ -3,6 +3,7 @@ package pl.witoldbrzezinski.transportmarket.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ public class LoadController {
 		return "index.html";
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/addNewLoad")
 	public String addLoad(Model model) {
 		
@@ -45,6 +47,7 @@ public class LoadController {
 		return "redirect:/";
 	}
 	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/updateLoad/{loadId}")
 	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
 		
@@ -59,7 +62,7 @@ public class LoadController {
 		service.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
-	
+	@Secured({"ROLE_ADMIN"})
 	@RequestMapping("deleteLoad/{loadId}")
 	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
 		service.deleteLoad(load);

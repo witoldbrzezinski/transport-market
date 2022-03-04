@@ -37,8 +37,8 @@
      		<th> Weight [t] </th>
      		<th> Load Type </th>
      		<th> Price [PLN] </th>
-     		<th> Update </th>
-     		<th> Delete </th>
+     		<th sec:authorize="hasRole('ADMIN')"> Update </th>
+     		<th sec:authorize="hasRole('ADMIN')"> Delete </th>
         </tr>
     </thead>
     <tbody>
@@ -57,8 +57,8 @@
             <td><span th:text="${#numbers.formatDecimal(load.weight,0,3,'COMMA')}"> Weight </span></td>
             <td><span th:text="${load.loadType}"> Load Type </span></td>
             <td><span th:text="${#numbers.formatDecimal(load.price,0,2,'COMMA')}"> Price </span></td>
-            <td><form action="#" th:action="@{/updateLoad/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-warning">Update</button></span></form>
-            <td><form action="#" th:action="@{/deleteLoad/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-danger">Delete</button></span></form>
+            <td sec:authorize="hasRole('ADMIN')"><form action="#" th:action="@{/updateLoad/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-warning">Update</button></span></form>
+            <td sec:authorize="hasRole('ADMIN')"><form action="#" th:action="@{/deleteLoad/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-danger">Delete</button></span></form>
         </tr>
     </tbody>
 </table>
