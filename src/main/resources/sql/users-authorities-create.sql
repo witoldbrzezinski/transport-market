@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS users CASCADE;
+CREATE TABLE users 
+(
+   username CHARACTER VARYING(50) NOT NULL PRIMARY KEY,
+  password CHARACTER VARYING(100) NOT NULL,
+  enabled SMALLINT NOT NULL 
+);
+
+
+
+DROP TABLE IF EXISTS authorities CASCADE;
+CREATE TABLE authorities
+(
+ username CHARACTER VARYING(50) NOT NULL,
+ authority CHARACTER VARYING(50) NOT NULL,
+ UNIQUE (username,authority)
+) ;
+
+ALTER TABLE ONLY authorities
+    ADD CONSTRAINT fk_user FOREIGN KEY (username) REFERENCES users(username);
+
+
