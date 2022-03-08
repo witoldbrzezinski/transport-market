@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    public void configure(WebSecurity web) throws Exception {
 	        //Web resources
 	        web.ignoring().antMatchers("/css/**");
+	        web.ignoring().antMatchers("/register");
 	    }
 	
 	   @Bean

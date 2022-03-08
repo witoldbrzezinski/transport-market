@@ -1,5 +1,7 @@
 package pl.witoldbrzezinski.transportmarket.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class User {
 
 	@Id
-	@Column(name = "username")
+	@Column(name = "username", unique=true)
 	@NotNull
 	@NotEmpty
 	private String username;
@@ -27,7 +29,7 @@ public class User {
 	@Column(name = "enabled")
 	private int enabled;
 
-	@Column(name = "email")
+	@Column(name = "email", unique=true)
 	@NotNull
 	@NotEmpty
 	private String email;
@@ -85,8 +87,31 @@ public class User {
 	}
 
 	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", enabled=" + enabled + "]";
+	public int hashCode() {
+		return Objects.hash(email, enabled, matchingPassword, password, username);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && enabled == other.enabled
+				&& Objects.equals(matchingPassword, other.matchingPassword) && Objects.equals(password, other.password)
+				&& Objects.equals(username, other.username);
+	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", enabled=" + enabled + ", email=" + email + "]";
+	}
+
+
+	
+	
 
 }

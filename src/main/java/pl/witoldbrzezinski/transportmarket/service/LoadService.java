@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import pl.witoldbrzezinski.transportmarket.entity.Load;
 import pl.witoldbrzezinski.transportmarket.repository.LoadRepository;
 
-@Service
+@Service("loadService")
 public class LoadService {
 	
 	@Autowired

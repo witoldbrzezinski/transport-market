@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import pl.witoldbrzezinski.transportmarket.entity.Customer;
 import pl.witoldbrzezinski.transportmarket.repository.CustomerRepository;
 
-@Service
+@Service("customerService")
 public class CustomerService {
 	
 	@Autowired
