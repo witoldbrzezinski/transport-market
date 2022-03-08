@@ -3,7 +3,8 @@ CREATE TABLE users
 (
    username CHARACTER VARYING(50) NOT NULL PRIMARY KEY,
   password CHARACTER VARYING(100) NOT NULL,
-  enabled SMALLINT NOT NULL 
+  enabled SMALLINT NOT NULL,
+	email CHARACTER VARYING(100) NOT NULL UNIQUE
 );
 
 
@@ -18,5 +19,6 @@ CREATE TABLE authorities
 
 ALTER TABLE ONLY authorities
     ADD CONSTRAINT fk_user FOREIGN KEY (username) REFERENCES users(username);
+
 
 
