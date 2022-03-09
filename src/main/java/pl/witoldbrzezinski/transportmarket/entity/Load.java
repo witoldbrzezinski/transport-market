@@ -19,6 +19,7 @@ public class Load {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="load_id")
     private Long loadId;
 	
 	@Column(name = "name", nullable = false)

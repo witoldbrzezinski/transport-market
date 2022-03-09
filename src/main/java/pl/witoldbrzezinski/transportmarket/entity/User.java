@@ -1,10 +1,19 @@
 package pl.witoldbrzezinski.transportmarket.entity;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,6 +23,10 @@ import javax.validation.constraints.NotNull;
 public class User {
 
 	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_id")
+    private Long userId;
+	
 	@Column(name = "username", unique=true)
 	@NotNull
 	@NotEmpty
@@ -29,21 +42,36 @@ public class User {
 	@Column(name = "enabled")
 	private int enabled;
 
-	@Column(name = "email", unique=true)
+	@Column(name = "email", unique = true)
 	@NotNull
 	@NotEmpty
 	private String email;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinTable(	
+			    name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> userRoles = new HashSet<>();
 
 	public User() {
-
 	}
 
 	public User(@NotNull @NotEmpty String username, @NotNull @NotEmpty String password, int enabled,
-			@NotNull @NotEmpty String email) {
+			@NotNull @NotEmpty String email, Set<Role> roles) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 		this.email = email;
+		this.userRoles = roles;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -85,6 +113,14 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public Set<Role> getRoles() {
+		return userRoles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.userRoles = roles;
+	}
 
 	@Override
 	public int hashCode() {
@@ -109,9 +145,5 @@ public class User {
 	public String toString() {
 		return "User [username=" + username + ", enabled=" + enabled + ", email=" + email + "]";
 	}
-
-
-	
-	
 
 }

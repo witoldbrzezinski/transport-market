@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import pl.witoldbrzezinski.transportmarket.entity.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
 	
 	Optional<User> findByUsernameAndPassword(String username, String password);
 }
