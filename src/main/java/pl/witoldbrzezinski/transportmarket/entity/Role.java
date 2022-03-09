@@ -23,7 +23,7 @@ public class Role {
 	private int roleId;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="role")
+	@Column(name="role",unique = true)
 	@NotNull
 	private RoleEnum role;
 	
@@ -61,7 +61,9 @@ public class Role {
 		this.users = users;
 	}
 	
-	
+	public static Role createUserWithDefaultRole() {
+		return new Role(RoleEnum.ROLE_USER);
+	}
 	
 	
 }

@@ -47,7 +47,7 @@ public class User {
 	@NotEmpty
 	private String email;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinTable(	
 			    name = "user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 
@@ -145,5 +145,6 @@ public class User {
 	public String toString() {
 		return "User [username=" + username + ", enabled=" + enabled + ", email=" + email + "]";
 	}
+
 
 }
