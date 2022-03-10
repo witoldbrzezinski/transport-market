@@ -31,8 +31,6 @@ public class UserService {
 			user.setEmail(email);
 			role.setRole(RoleEnum.ROLE_USER);
 			user.setRoles(Set.of(role));
-			System.out.println(user);
-			System.out.println(role);
 			return userRepository.save(user);				
 	}
 		
