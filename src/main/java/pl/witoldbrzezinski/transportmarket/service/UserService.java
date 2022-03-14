@@ -23,7 +23,7 @@ public class UserService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	public User registerUser(String username, String password, String matchingPassword, String email) {	
+	public User registerUser(String username, String password, String matchingPassword, String email)  {	
 			User user = new User();
 			Role role = new Role();
 			user.setEnabled(ENABLED_ON);	
@@ -31,9 +31,11 @@ public class UserService {
 			if (password.equals(matchingPassword)) {
 				user.setPassword(passwordEncoder.encode(password));
 				user.setMatchingPassword(matchingPassword);
+			} else{
+				throw new RuntimeException("Passwords do not match!");
 			}
+			
 			user.setEmail(email);
-			role.setRoleId(USER_ROLE_ID);
 			role.setRole(RoleEnum.ROLE_USER);
 			user.setRoles(Set.of(role));
 			return userRepository.save(user);				

@@ -34,15 +34,17 @@ public class LoginController {
 	}
 	
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute User user, BindingResult result, Model model) {
+	public String register(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+		try {
 		User registeredUser = userService.registerUser(user.getUsername(), user.getPassword(), user.getMatchingPassword(), user.getEmail());
-		System.out.println(registeredUser);
-		
-		if (registeredUser!= null || result.hasErrors()) 
-			return "redirect:/";
-		else
-			model.addAttribute("message", "Valid form");
-			return "register.html"; 
+		if (registeredUser!= null && !user.getUsername().isBlank() && !user.getPassword().isBlank() && !user.getMatchingPassword().isBlank() && ! user.getEmail().isBlank()) {
+			 return "redirect:/";
+		}
+		}
+		catch (Exception exc) {
+			return "registration-error.html";
+		}
+		return "register.html";
 	}
 	
 	
