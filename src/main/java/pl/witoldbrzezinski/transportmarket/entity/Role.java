@@ -2,6 +2,7 @@ package pl.witoldbrzezinski.transportmarket.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,7 +28,7 @@ public class Role {
 	@NotNull
 	private RoleEnum role;
 	
-	@ManyToMany(mappedBy = "userRoles")
+	@ManyToMany(mappedBy = "userRoles", cascade=CascadeType.ALL)
 	private Set<User> users;
 	
 	public Role() {

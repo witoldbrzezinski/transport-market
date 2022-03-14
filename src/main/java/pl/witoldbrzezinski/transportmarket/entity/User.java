@@ -15,9 +15,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import pl.witoldbrzezinski.transportmarket.validator.FieldsValueMatch;
+
+@FieldsValueMatch(message = "Passwords do not match!")
 @Entity
 @Table(name = "users")
 public class User {
@@ -36,7 +40,8 @@ public class User {
 	@NotNull
 	@NotEmpty
 	private String password;
-
+	
+	@Transient
 	private String matchingPassword;
 
 	@Column(name = "enabled")
@@ -47,7 +52,7 @@ public class User {
 	@NotEmpty
 	private String email;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.MERGE)
+	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinTable(	
 			    name = "user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 

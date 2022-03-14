@@ -15,6 +15,7 @@ import pl.witoldbrzezinski.transportmarket.repository.UserRepository;
 public class UserService {
 	
 	private static final int ENABLED_ON = 1;
+	private static final int USER_ROLE_ID = 1;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -22,13 +23,17 @@ public class UserService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	public User registerUser(String username, String password, String email) {	
+	public User registerUser(String username, String password, String matchingPassword, String email) {	
 			User user = new User();
 			Role role = new Role();
 			user.setEnabled(ENABLED_ON);	
 			user.setUsername(username);
-			user.setPassword(passwordEncoder.encode(password));
+			if (password.equals(matchingPassword)) {
+				user.setPassword(passwordEncoder.encode(password));
+				user.setMatchingPassword(matchingPassword);
+			}
 			user.setEmail(email);
+			role.setRoleId(USER_ROLE_ID);
 			role.setRole(RoleEnum.ROLE_USER);
 			user.setRoles(Set.of(role));
 			return userRepository.save(user);				
