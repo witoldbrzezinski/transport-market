@@ -33,12 +33,19 @@ public class UserService {
 			} else{
 				throw new RuntimeException("Passwords do not match!");
 			}
-			
 			user.setEmail(email);
 			role.setRole(RoleEnum.ROLE_USER);
 			user.setRoles(Set.of(role));
 			return userRepository.save(user);				
 	}
-		
+	
+	public boolean checkIfUsernameExist(String username) {
+		return userRepository.findByUsername(username).isPresent();
+	}
+	
+	public boolean checkIfEmailExist(String email) {
+		return userRepository.findByEmail(email).isPresent();
+	}
+	
 }
 

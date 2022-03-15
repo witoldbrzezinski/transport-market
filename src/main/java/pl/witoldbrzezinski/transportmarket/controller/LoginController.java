@@ -34,6 +34,9 @@ public class LoginController {
 	
 	@PostMapping("/register")
 	public String register(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) throws Exception {
+		if(userService.checkIfEmailExist(user.getEmail()) && userService.checkIfUsernameExist(user.getUsername())) {
+			return "registration-existing-user.html";
+		}
 		try {
 		User registeredUser = userService.registerUser(user.getUsername(), user.getPassword(), user.getMatchingPassword(), user.getEmail());
 		if (registeredUser!= null && !user.getUsername().isBlank() && !user.getPassword().isBlank() && !user.getMatchingPassword().isBlank() && ! user.getEmail().isBlank()) {
