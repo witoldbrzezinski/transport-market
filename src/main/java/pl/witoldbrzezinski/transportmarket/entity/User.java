@@ -16,7 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import pl.witoldbrzezinski.transportmarket.validator.FieldsValueMatch;
@@ -32,13 +32,13 @@ public class User {
     private Long userId;
 	
 	@Column(name = "username", unique=true)
-	@NotNull
-	@NotEmpty
+	@NotNull(message = "Username can't be empty")
+	@NotBlank(message = "Username can't be empty")
 	private String username;
 
 	@Column(name = "password")
 	@NotNull
-	@NotEmpty
+	@NotBlank
 	private String password;
 	
 	@Transient
@@ -49,7 +49,7 @@ public class User {
 
 	@Column(name = "email", unique = true)
 	@NotNull
-	@NotEmpty
+	@NotBlank
 	private String email;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
@@ -62,8 +62,8 @@ public class User {
 	public User() {
 	}
 
-	public User(@NotNull @NotEmpty String username, @NotNull @NotEmpty String password, int enabled,
-			@NotNull @NotEmpty String email, Set<Role> roles) {
+	public User(@NotNull @NotBlank String username, @NotNull @NotBlank String password, int enabled,
+			@NotNull @NotBlank String email, Set<Role> roles) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;

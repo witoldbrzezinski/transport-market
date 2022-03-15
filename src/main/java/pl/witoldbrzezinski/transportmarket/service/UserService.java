@@ -15,7 +15,6 @@ import pl.witoldbrzezinski.transportmarket.repository.UserRepository;
 public class UserService {
 	
 	private static final int ENABLED_ON = 1;
-	private static final int USER_ROLE_ID = 1;
 	
 	@Autowired
 	private UserRepository userRepository;

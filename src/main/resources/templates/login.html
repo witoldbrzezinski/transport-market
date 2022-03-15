@@ -33,6 +33,10 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
                             <div id="register-link">
                             	<a th:href="@{/register}" class="text-info">Register here</a>
                             </div>
+                            <div th:if="${param.error}" class="alert alert-danger">    
+    								Invalid username or password. Please try again.
+							</div>
+                            
                         </form>
                     </div>
                 </div>

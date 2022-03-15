@@ -22,8 +22,7 @@ public class LoginController {
 	UserService userService;
 	
 	@GetMapping("/login")
-	public String getloginPage() {
-		
+	public String getloginPage(){	
 		return "login.html";
 	}
 	
@@ -34,7 +33,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/register")
-	public String register(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
+	public String register(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) throws Exception {
 		try {
 		User registeredUser = userService.registerUser(user.getUsername(), user.getPassword(), user.getMatchingPassword(), user.getEmail());
 		if (registeredUser!= null && !user.getUsername().isBlank() && !user.getPassword().isBlank() && !user.getMatchingPassword().isBlank() && ! user.getEmail().isBlank()) {
@@ -42,6 +41,7 @@ public class LoginController {
 		}
 		}
 		catch (Exception exc) {
+			exc.printStackTrace();
 			return "registration-error.html";
 		}
 		return "register.html";
