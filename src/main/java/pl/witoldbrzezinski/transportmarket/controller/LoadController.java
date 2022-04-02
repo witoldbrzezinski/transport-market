@@ -2,10 +2,13 @@ package pl.witoldbrzezinski.transportmarket.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +46,10 @@ public class LoadController {
 	}
 	
 	@PostMapping("confirmLoadAdded")
-	public String saveLoad(@ModelAttribute("load") Load load) {
+	public String saveLoad(@Valid @ModelAttribute("load") Load load, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "add-load.html";
+		}
 		service.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
@@ -51,7 +57,6 @@ public class LoadController {
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/updateLoad/{loadId}")
 	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
-		
 		Load load = service.getLoad(loadId);
 		model.addAttribute("load",load);
 		
@@ -59,10 +64,14 @@ public class LoadController {
 	}
 	
 	@PostMapping("updateLoadConfirm/{loadId}")
-	public String updateLoadConfrim(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
+	public String updateLoadConfrim(@PathVariable("loadId") long loadId,@Valid @ModelAttribute("load") Load load, BindingResult result) {
+		if (result.hasErrors()) {
+			return "update-load.html";
+		}
 		service.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
+	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping("deleteLoad/{loadId}")
 	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {

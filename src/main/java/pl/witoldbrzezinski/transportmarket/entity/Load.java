@@ -9,6 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,36 +28,50 @@ public class Load {
 	@Column(name="load_id")
     private Long loadId;
 	
-	@Column(name = "name", nullable = false)
+	@Column(name = "name")
+	@NotEmpty(message="Load name cannot be empty")
 	private String name;
 	
 	@Column(name="loading_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@FutureOrPresent(message="Loading date must be in the future or present")
+	@NotNull(message="Load date cannot be empty")
 	private LocalDateTime loadingDate;
 	
 	@Column(name="loading_city")
+	@NotEmpty(message="Loading city cannot be empty")
 	private String loadingCity;
 	
 	@Column(name="loading_postcode")
+	@NotEmpty(message="Loading postcode cannot be empty")
+	@Pattern(regexp= "\\d{2}-\\d{3}", message="Wrong postcode format")
 	private String loadingPostcode;
 	
 	@Column(name="unloading_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@Future(message="Unloading date must be in the future")
 	private LocalDateTime unloadingDate;
 	
 	@Column(name="unloading_city")
+	@NotEmpty(message="Unloading city cannot be empty")
 	private String unloadingCity;
 	
 	@Column(name="unloading_postcode")
+	@NotEmpty(message="Unloading postcode cannot be empty")
+	@Pattern(regexp= "\\d{2}-\\d{3}", message="Wrong postcode format")
 	private String unloadingPostcode;
 	
 	@Column(name="weight_in_tones")
+	@Min(value=0, message="Weight must be greater than 0")
 	private BigDecimal weight;
 	
 	@Column(name="loadType")
+	@NotEmpty(message="Load type cannot be empty")
 	private String loadType;
 	
 	@Column(name="price_in_pln")
+	@NotNull(message="Price cannot be empty")
+	@Min(value=0, message="Price must be greater than 0")
 	private BigDecimal price;
 	
 	public Load() {

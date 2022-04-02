@@ -4,52 +4,63 @@
 <meta charset="UTF-8">
 <title>Add new Load</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
 <div th:replace="~{fragments/navbar :: navbar}"> </div>
 
-	<div id="container">
+	<div id="container" style="margin-left:25px">
 		<h3>Update Load</h3>
 		<form action="#" th:action="@{/updateLoadConfirm/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post">
 		<div class="col-md-6 form-group">
 		<label>Name:</label>
-    	<input type="text" id="name" name="name" class="form-control" th:field="*{name}" />
+    	<input type="text" id="name" name="name" class="form-control" th:value="*{name}" />
+    	<p  th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}">Invalid name</p>
     	</div>
     	 <div class="col-md-6 form-group">
 		<label>Loading date:</label>
-    	<input type="datetime-local" id="loadingDate" name="loadingDate" class="form-control" th:field="*{loadingDate}" />
+    	<input type="datetime-local" id="loadingDate" name="loadingDate" class="form-control" th:value="*{loadingDate}" />
+    	<p  th:if="${#fields.hasErrors('loadingDate')}" th:errorclass="error" th:errors="*{loadingDate}">Invalid loading date</p>
     	</div>
     	<div class="col-md-6 form-group">
 		<label>Loading city:</label>
-    	<input type="text" id="loadingCity" name="loadingCity" class="form-control" th:field="*{loadingCity}" />
+    	<input type="text" id="loadingCity" name="loadingCity" class="form-control" th:value="*{loadingCity}" />
+    	<p  th:if="${#fields.hasErrors('loadingCity')}" th:errorclass="error" th:errors="*{loadingCity}">Invalid loading city</p>
     	</div>
     	 <div class="col-md-6 form-group">
 		<label>Loading postcode:</label>
-    	<input type="text" id="loadingPostcode" name="loadingPostcode" class="form-control" th:field="*{loadingPostcode}" />
+    	<input type="text" id="loadingPostcode" name="loadingPostcode" class="form-control" th:value="*{loadingPostcode}" />
+    	<p  th:if="${#fields.hasErrors('loadingPostcode')}" th:errorclass="error" th:errors="*{loadingPostcode}">Invalid postcode</p>
     	</div>
     	<div class="col-md-6 form-group">
 		<label>Unloading date:</label>
-    	<input type="datetime-local" id="unloadingDate" name="unloadingDate" class="form-control" th:field="*{unloadingDate}" />
+    	<input type="datetime-local" id="unloadingDate" name="unloadingDate" class="form-control" th:value="*{unloadingDate}" />
+    	<p  th:if="${#fields.hasErrors('unloadingDate')}" th:errorclass="error" th:errors="*{unloadingDate}">Invalid unloading date</p>
     	</div>
     	<div class="col-md-6 form-group">
 		<label>Unloading city:</label>
-    	<input type="text" id="unloadingCity" name="unloadingCity" class="form-control" th:field="*{unloadingCity}" />
+    	<input type="text" id="unloadingCity" name="unloadingCity" class="form-control" th:value="*{unloadingCity}" />
+    	<p  th:if="${#fields.hasErrors('unloadingCity')}" th:errorclass="error" th:errors="*{unloadingCity}">Invalid unloading city</p>
     	</div>
     	 <div class="col-md-6 form-group">
 		<label>Unloading postcode:</label>
-    	<input type="text" id="unloadingPostcode" name="unloadingPostcode" class="form-control" th:field="*{unloadingPostcode}" />
+    	<input type="text" id="unloadingPostcode" name="unloadingPostcode" class="form-control" th:value="*{unloadingPostcode}" />
+    	<p  th:if="${#fields.hasErrors('unloadingPostcode')}" th:errorclass="error" th:errors="*{unloadingPostcode}">Invalid postcode</p>
     	</div>
-    	  <div class="col-md-6 form-group">
+    	<div class="col-md-6 form-group">
 		<label>Weight:</label>
-    	<input type="number" id="weight" name="weight" class="form-control" th:field="*{weight}" />
+    	<input type="number" id="weight" name="weight" class="form-control" th:value="*{weight}" />
+    	<p  th:if="${#fields.hasErrors('weight')}" th:errorclass="error" th:errors="*{weight}">Invalid weight</p>
     	</div>
     	<div class="col-md-6 form-group">
 		<label>Load Type:</label>
-    	<input type="text" id="loadType" name="loadType" class="form-control" th:field="*{loadType}" />
+    	<input type="text" id="loadType" name="loadType" class="form-control" th:value="*{loadType}" />
+    	<p  th:if="${#fields.hasErrors('loadType')}" th:errorclass="error" th:errors="*{loadType}">Invalid load type</p>
     	</div>
     	<div class="col-md-6 form-group">
 		<label>Price:</label>
-    	<input type="number" id="price" name="price" class="form-control" th:field="*{price}" />
+    	<input type="number" id="price" name="price" class="form-control" th:value="*{price}" />
+    	<p  th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}">Price</p>
     	</div>
 		<button type="submit">Update</button>  
 		</form>
