@@ -128,28 +128,10 @@ public class User {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(email, enabled, matchingPassword, password, username);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		return Objects.equals(email, other.email) && enabled == other.enabled
-				&& Objects.equals(matchingPassword, other.matchingPassword) && Objects.equals(password, other.password)
-				&& Objects.equals(username, other.username);
-	}
-
-	@Override
 	public String toString() {
-		return "User [username=" + username + ", enabled=" + enabled + ", email=" + email + "]";
+		return "User [userId=" + userId + ", username=" + username + ", enabled=" + enabled + ", email=" + email
+				+ ", userRoles=" + userRoles + "]";
 	}
 
-
+	
 }
