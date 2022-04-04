@@ -22,13 +22,13 @@ import pl.witoldbrzezinski.transportmarket.service.LoadService;
 public class LoadController {
 	
 	@Autowired
-	LoadService service;
+	LoadService loadService;
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/")
 	public String index(Model model) {
 		
-		List<Load> loadList = service.getAllLoads();
+		List<Load> loadList = loadService.getAllLoads();
 		
 		model.addAttribute("loads",loadList);
 		
@@ -50,14 +50,14 @@ public class LoadController {
 		if (result.hasErrors()) {
 			return "add-load.html";
 		}
-		service.saveOrUpdateLoad(load);
+		loadService.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/updateLoad/{loadId}")
 	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
-		Load load = service.getLoad(loadId);
+		Load load = loadService.getLoad(loadId);
 		model.addAttribute("load",load);
 		
 		return "update-load.html";
@@ -68,14 +68,14 @@ public class LoadController {
 		if (result.hasErrors()) {
 			return "update-load.html";
 		}
-		service.saveOrUpdateLoad(load);
+		loadService.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping("deleteLoad/{loadId}")
 	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
-		service.deleteLoad(load);
+		loadService.deleteLoad(load);
 		return "redirect:/";
 	}
 
