@@ -3,11 +3,15 @@ package pl.witoldbrzezinski.transportmarket.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
@@ -73,6 +77,7 @@ public class Load {
 	@NotNull(message="Price cannot be empty")
 	@Min(value=0, message="Price must be greater than 0")
 	private BigDecimal price;
+	
 	
 	public Load() {
 		

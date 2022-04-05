@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Add new Load</title>
@@ -58,7 +58,7 @@
     	<p  th:if="${#fields.hasErrors('loadType')}" th:errorclass="error" th:errors="*{loadType}">Invalid load type</p>
     	</div>
     	<div class="col-md-6 form-group">
-		<label>Price:</label>
+		<label>Price [PLN]:</label>
     	<input type="number" id="price" name="price" class="form-control" th:value="*{price}" />
     	<p  th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}">Price</p>
     	</div>

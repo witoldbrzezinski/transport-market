@@ -4,6 +4,8 @@ package pl.witoldbrzezinski.transportmarket.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,5 +52,13 @@ public class LoginController {
 		return "register.html";
 	}
 	
+	@GetMapping("/myProfile")
+	public String getMyProfilePage(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentUsername = authentication.getName();
+		User user = userService.getUserByUsername(currentUsername);
+		model.addAttribute("user",user);
+		return "profile.html";
+	}
 	
 }

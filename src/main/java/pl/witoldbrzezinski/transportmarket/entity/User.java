@@ -1,7 +1,6 @@
 package pl.witoldbrzezinski.transportmarket.entity;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
@@ -58,6 +58,11 @@ public class User {
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> userRoles = new HashSet<>();
+	
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+	
 
 	public User() {
 	}
@@ -125,6 +130,14 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.userRoles = roles;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override
