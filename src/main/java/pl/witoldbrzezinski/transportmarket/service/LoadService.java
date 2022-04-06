@@ -1,8 +1,8 @@
 package pl.witoldbrzezinski.transportmarket.service;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import pl.witoldbrzezinski.transportmarket.entity.Load;
@@ -56,11 +58,11 @@ public class LoadService {
         } else {
             int toIndex = Math.min(startItem + pageSize, loadsList.size());
             list = loadsList.subList(startItem, toIndex);
+            list.sort(Comparator.comparing(Load::getLoadId));
         }
 
         Page<Load> loadPage
           = new PageImpl<Load>(list, PageRequest.of(currentPage, pageSize), loadsList.size());
-
         return loadPage;
     }
 
