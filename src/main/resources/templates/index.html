@@ -45,7 +45,7 @@
 	<tr th:if="${loads.empty}">
             <td colspan="13" style="text-align:center"> No Loads Available </td>
         </tr>
-        <tr th:each="load : ${loads}">
+        <tr th:each="load : ${loadPage.content}">
          	<td><span th:text="${load.loadId}"> # </span></td>
             <td><span th:text="${load.name}"> Name </span></td>
             <td><span th:text="${#temporals.format(load.loadingDate, 'yyyy-MM-dd')}"> Loading date </span></td>
@@ -63,5 +63,10 @@
     </tbody>
 </table>
 </div>
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li th:each="pageNumber : ${pageNumbers}" class="page-item"><a class="page-link" th:href="@{/(size=${loadPage.size}, page=${pageNumber})}" th:text=${pageNumber}></a></li>
+  </ul>
+</nav>
 </body>
 </html>
