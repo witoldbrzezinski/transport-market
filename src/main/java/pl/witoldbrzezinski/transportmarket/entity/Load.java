@@ -3,14 +3,12 @@ package pl.witoldbrzezinski.transportmarket.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Future;
@@ -78,6 +76,10 @@ public class Load {
 	@Min(value=0, message="Price must be greater than 0")
 	private BigDecimal price;
 	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	
 	public Load() {
 		
@@ -85,7 +87,7 @@ public class Load {
 
 	public Load(String name, LocalDateTime loadingDate, String loadingCity, String loadingPostcode,
 			LocalDateTime unloadingDate, String unloadingCity, String unloadingPostcode, BigDecimal weight, String loadType,
-			BigDecimal price) {
+			BigDecimal price, User user) {
 		this.name = name;
 		this.loadingDate = loadingDate;
 		this.loadingCity = loadingCity;
@@ -96,7 +98,8 @@ public class Load {
 		this.weight = weight;
 		this.loadType = loadType;
 		this.price = price;
-	}
+		this.user = user;
+		}
 
 	public Long getLoadId() {
 		return loadId;
@@ -184,6 +187,14 @@ public class Load {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

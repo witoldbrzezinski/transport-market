@@ -23,6 +23,9 @@ public class LoadService {
 	@Autowired
 	LoadRepository repository;
 	
+	@Autowired
+	UserService userService;
+	
     public List<Load> getAllLoads(){
     	
         List<Load> loadList = repository.findAll();
@@ -35,7 +38,9 @@ public class LoadService {
     }
     
     public void saveOrUpdateLoad(Load load) {
+    	load.setUser(userService.getCurrentUser());
     	repository.save(load);
+    	
     }
 
 	public Load getLoad(long loadId) {
@@ -53,12 +58,12 @@ public class LoadService {
         int startItem = currentPage * pageSize;
         List<Load> list;
         List<Load> loadsList = repository.findAll();
+        loadsList.sort(Comparator.comparing(Load::getLoadId));
 		if (loadsList.size() < startItem) {
             list = Collections.emptyList();
         } else {
             int toIndex = Math.min(startItem + pageSize, loadsList.size());
             list = loadsList.subList(startItem, toIndex);
-            list.sort(Comparator.comparing(Load::getLoadId));
         }
 
         Page<Load> loadPage

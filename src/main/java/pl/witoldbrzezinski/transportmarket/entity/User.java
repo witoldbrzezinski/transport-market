@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
@@ -63,7 +64,9 @@ public class User {
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 	
-
+	@OneToMany(mappedBy="user")
+	private Set<Load> loads;
+	
 	public User() {
 	}
 
@@ -138,6 +141,14 @@ public class User {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Set<Load> getLoads() {
+		return loads;
+	}
+
+	public void setLoads(Set<Load> loads) {
+		this.loads = loads;
 	}
 
 	@Override
