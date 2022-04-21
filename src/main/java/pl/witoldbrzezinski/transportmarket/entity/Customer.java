@@ -39,6 +39,18 @@ public class Customer {
 	public Customer() {
 		  
 	}
+	
+
+	public Customer(String name, String country, String city, String email, String phone) {
+		this.name = name;
+		this.country = country;
+		this.city = city;
+		this.email = email;
+		this.phone = phone;
+	}
+
+
+
 
 	public int getCustomerId() {
 		return customerId;

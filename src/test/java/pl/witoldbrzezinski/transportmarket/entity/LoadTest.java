@@ -2,10 +2,13 @@ package pl.witoldbrzezinski.transportmarket.entity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,20 +42,30 @@ public class LoadTest {
 	@Test
 	public void createNewLoadShouldNotBeNull() {
 		Load savedLoad = loadRepository.save(testLoad);
-		
 		assertNotNull(savedLoad);
 	}
 	
 	@Test
-	public void findLoadByNameShouldFindLoad() {
-		
+	public void searchingLoadByNameShouldFindLoad() {
 		String name = "Test";
-		
 		assertThat(testLoad.getName()).isEqualTo(name);
 	
 	}
 	
-
+	@Test
+	public void searchingLoadWithWrongNameShouldNotFindLoad() {
+		String name = "Wrong test";
+		Load load = loadRepository.findByName(name);
+		assertNull(load);
+	
+	}
+	
+	@Test
+	public void listOfLoadsShouldHasSizeGreaterThanZero() {
+		List<Load> loads = new ArrayList<>();
+		loads.add(testLoad);
+		assertThat(loads).size().isGreaterThan(0);
+	}
 
 	
 	
