@@ -19,14 +19,14 @@ import pl.witoldbrzezinski.transportmarket.repository.LoadRepository;
 public class LoadService {
 	
 	@Autowired
-	LoadRepository repository;
+	LoadRepository loadRepository;
 	
 	@Autowired
 	UserService userService;
 	
     public List<Load> getAllLoads(){
     	
-        List<Load> loadList = repository.findAll();
+        List<Load> loadList = loadRepository.findAll();
          
         if(loadList.size() > 0) {
             return loadList;
@@ -37,17 +37,17 @@ public class LoadService {
     
     public void saveOrUpdateLoad(Load load) {
     	load.setUser(userService.getCurrentUser());
-    	repository.save(load);
+    	loadRepository.save(load);
     	
     }
 
 	public Load getLoad(long loadId) {
 		// TODO Auto-generated method stub
-		return repository.getById(loadId);
+		return loadRepository.getById(loadId);
 	}
 	
 	public void deleteLoad(Load load) {
-		repository.delete(load);
+		loadRepository.delete(load);
 	}
 	// thanks to https://www.baeldung.com/spring-thymeleaf-pagination
     public Page<Load> findPaginated(Pageable pageable) {
@@ -55,7 +55,7 @@ public class LoadService {
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
         List<Load> list;
-        List<Load> loadsList = repository.findAll();
+        List<Load> loadsList = loadRepository.findAll();
         loadsList.sort(Comparator.comparing(Load::getLoadId));
 		if (loadsList.size() < startItem) {
             list = Collections.emptyList();

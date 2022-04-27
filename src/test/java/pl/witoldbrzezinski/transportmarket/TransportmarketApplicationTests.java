@@ -9,5 +9,11 @@ class TransportmarketApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+	
+	@Test
+	public void main() {
+		TransportmarketApplication.main(new String[] {});
+	}
+	
 
 }

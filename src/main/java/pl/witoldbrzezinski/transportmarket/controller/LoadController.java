@@ -62,7 +62,7 @@ public class LoadController {
 		return "add-load.html";
 	}
 	
-	@PostMapping("confirmLoadAdded")
+	@PostMapping("/confirmLoadAdded")
 	public String saveLoad(@Valid @ModelAttribute("load") Load load, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "add-load.html";
@@ -80,7 +80,7 @@ public class LoadController {
 		return "update-load.html";
 	}
 	
-	@PostMapping("updateLoadConfirm/{loadId}")
+	@PostMapping("/updateLoadConfirm/{loadId}")
 	public String updateLoadConfrim(@PathVariable("loadId") long loadId,@Valid @ModelAttribute("load") Load load, BindingResult result) {
 		if (result.hasErrors()) {
 			return "update-load.html";
@@ -90,7 +90,7 @@ public class LoadController {
 	}
 	
 	@Secured({"ROLE_ADMIN"})
-	@RequestMapping("deleteLoad/{loadId}")
+	@RequestMapping("/deleteLoad/{loadId}")
 	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
 		loadService.deleteLoad(load);
 		return "redirect:/";
