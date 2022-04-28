@@ -40,5 +40,7 @@ public class LoadServiceTest {
 		loadList.add(testLoad);
 		assertThat(loadList.size()).isEqualTo(1);
 	}
+	
+	
 
 }

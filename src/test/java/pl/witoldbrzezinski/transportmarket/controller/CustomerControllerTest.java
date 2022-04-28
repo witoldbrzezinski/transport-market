@@ -1,8 +1,6 @@
 package pl.witoldbrzezinski.transportmarket.controller;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -17,47 +15,33 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
-import pl.witoldbrzezinski.transportmarket.service.LoadService;
+import pl.witoldbrzezinski.transportmarket.service.CustomerService;
 
-
-@WebMvcTest(LoadController.class)
+@WebMvcTest(CustomerController.class)
 @AutoConfigureTestDatabase
-public class LoadControllerTest {
+public class CustomerControllerTest {
 	
 	@Autowired
-	private LoadController loadController;
+	CustomerController customerController;
 	
 	@MockBean
-	private LoadService loadService;
+	CustomerService customerService;
 	
 	private MockMvc mockMvc;
 	
 	@Mock
-	private Model model;
+    private Model model;
+	
 	
 	@BeforeEach
 	public void init() {
-		mockMvc = MockMvcBuilders.standaloneSetup(loadController).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(customerController).build();
 		}
 	
 	@Test
-	public void controllerShouldNotBeNull() {
-		assertThat(loadController).isNotNull();
+	public void gettingAllCustomersShouldReturnCustomersList() throws Exception {
+		mockMvc.perform(get("/customers"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("customer.html"));
 	}
-	
-	@Test
-	public void newLoadButtonShouldReturnView() throws Exception {
-		mockMvc.perform(get("/addNewLoad"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("add-load.html"));
-	}
-	
-	@Test
-	public void savingLoadWithNoLoadShouldReturnToAddingLoadPage() throws Exception {
-		mockMvc.perform(post("/confirmLoadAdded"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("add-load.html"));
-	}
-	
-
 }
