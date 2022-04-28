@@ -2,7 +2,6 @@ package pl.witoldbrzezinski.transportmarket.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -17,47 +16,46 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
-import pl.witoldbrzezinski.transportmarket.service.LoadService;
+import pl.witoldbrzezinski.transportmarket.service.UserService;
 
-
-@WebMvcTest(LoadController.class)
+@WebMvcTest(LoginController.class)
 @AutoConfigureTestDatabase
-public class LoadControllerTest {
+public class LoginControllerTest {
 	
 	@Autowired
-	private LoadController loadController;
+	LoginController loginController;
 	
 	@MockBean
-	private LoadService loadService;
-	
-	@Mock
-	private Model model;
+	UserService userService;
 	
 	private MockMvc mockMvc;
 	
+	@Mock
+    private Model model;
+	
+	
 	@BeforeEach
 	public void init() {
-		mockMvc = MockMvcBuilders.standaloneSetup(loadController).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
 		}
 	
 	@Test
 	public void controllerShouldNotBeNull() {
-		assertThat(loadController).isNotNull();
+		assertThat(loginController).isNotNull();
 	}
 	
 	@Test
-	public void newLoadButtonShouldReturnView() throws Exception {
-		mockMvc.perform(get("/addNewLoad"))
+	public void gettingLoginPageShouldReturnLoginView() throws Exception {
+		mockMvc.perform(get("/login"))
 			.andExpect(status().isOk())
-			.andExpect(view().name("add-load.html"));
+			.andExpect(view().name("login.html"));
 	}
 	
 	@Test
-	public void savingLoadWithNoLoadShouldReturnToAddingLoadPage() throws Exception {
-		mockMvc.perform(post("/confirmLoadAdded"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("add-load.html"));
+	public void gettingRegisterPageShouldReturnRegisterView() throws Exception {
+		mockMvc.perform(get("/register"))
+		.andExpect(status().isOk())
+		.andExpect(view().name("register.html"));
 	}
-	
 
 }
