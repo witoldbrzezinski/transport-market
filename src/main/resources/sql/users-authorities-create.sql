@@ -1,7 +1,3 @@
-SELECT username, password, enabled, email, matching_password
-	FROM public.users;
-	
-
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users 
 (  user_id SERIAL PRIMARY KEY,
