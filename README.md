@@ -3,6 +3,29 @@ Simple app that allows you to organize transportation of your loads.
 
 App is written in Java language on back-end and with HTML and CSS on front-end. There is a possibility to register user and then login to the app. On the main page there is a list of load's details. You can contact load's owner via email to make business contract. App also contains list of all customers and Your's profile basic data. 
 
+### Installation : #
+
+- Run PostgreSQL database with docker by using the following command:
+
+```
+- docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=YOURPASSWORD postgres:15.1
+```
+
+#### Creating Postgres role :
+
+- Run SQL command:
+
+```
+CREATE USER dev WITH PASSWORD 'dev';
+```
+
+#### Creating database
+- Run SQL command:
+
+```
+CREATE DATABASE transportmarket;
+```
+
 MIT License
 Copyright (c) 2022 Witold Brzeziński
 
