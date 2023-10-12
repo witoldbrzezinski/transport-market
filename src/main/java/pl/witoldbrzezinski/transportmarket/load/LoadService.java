@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.service;
+package pl.witoldbrzezinski.transportmarket.load;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,8 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import pl.witoldbrzezinski.transportmarket.entity.LoadEntity;
-import pl.witoldbrzezinski.transportmarket.repository.LoadRepository;
+import pl.witoldbrzezinski.transportmarket.security.UserService;
 
 @Service("loadService")
 public class LoadService {
@@ -22,7 +21,7 @@ public class LoadService {
 	LoadRepository loadRepository;
 	
 	@Autowired
-	UserService userService;
+    UserService userService;
 	
     public List<LoadEntity> getAllLoads(){
     	

@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.controller;
+package pl.witoldbrzezinski.transportmarket.customer;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -12,7 +12,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
-import pl.witoldbrzezinski.transportmarket.service.CustomerService;
+import pl.witoldbrzezinski.transportmarket.customer.CustomerController;
+import pl.witoldbrzezinski.transportmarket.customer.CustomerService;
 
 @AutoConfigureMockMvc
 @WithMockUser
@@ -20,7 +21,8 @@ import pl.witoldbrzezinski.transportmarket.service.CustomerService;
 @Sql(value = "/clean-customers.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 public class CustomerControllerTest extends IntegrationTestDB {
 
-  @Autowired CustomerController customerController;
+  @Autowired
+  CustomerController customerController;
   @Autowired CustomerService customerService;
   @Autowired private MockMvc mockMvc;
 

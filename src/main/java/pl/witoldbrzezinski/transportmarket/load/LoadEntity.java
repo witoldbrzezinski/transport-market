@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.entity;
+package pl.witoldbrzezinski.transportmarket.load;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,6 +21,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 
 @Entity
 @Table(name="loads")

@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.controller;
+package pl.witoldbrzezinski.transportmarket.security;
 
 
 import javax.validation.Valid;
@@ -10,9 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
-import pl.witoldbrzezinski.transportmarket.service.UserService;
 
 
 @Controller

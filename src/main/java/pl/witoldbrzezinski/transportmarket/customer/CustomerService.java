@@ -1,13 +1,10 @@
-package pl.witoldbrzezinski.transportmarket.service;
+package pl.witoldbrzezinski.transportmarket.customer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import pl.witoldbrzezinski.transportmarket.entity.CustomerEntity;
-import pl.witoldbrzezinski.transportmarket.repository.CustomerRepository;
 
 @Service("customerService")
 public class CustomerService {

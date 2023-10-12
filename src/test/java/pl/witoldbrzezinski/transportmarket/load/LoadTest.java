@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.entity;
+package pl.witoldbrzezinski.transportmarket.load;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -17,7 +17,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import pl.witoldbrzezinski.transportmarket.repository.LoadRepository;
+import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
+import pl.witoldbrzezinski.transportmarket.load.LoadRepository;
+import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)

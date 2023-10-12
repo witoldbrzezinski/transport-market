@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.service;
+package pl.witoldbrzezinski.transportmarket.load;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -11,8 +11,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import pl.witoldbrzezinski.transportmarket.entity.LoadEntity;
-import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
+import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
+import pl.witoldbrzezinski.transportmarket.security.UserEntity;
+import pl.witoldbrzezinski.transportmarket.load.LoadService;
 
 
 public class LoadServiceTest {

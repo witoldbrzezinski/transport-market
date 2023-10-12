@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.entity;
+package pl.witoldbrzezinski.transportmarket.security;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +24,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.witoldbrzezinski.transportmarket.customer.CustomerEntity;
+import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
 import pl.witoldbrzezinski.transportmarket.validator.FieldsValueMatch;
 
 @FieldsValueMatch(message = "Passwords do not match!")

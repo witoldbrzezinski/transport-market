@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.controller;
+package pl.witoldbrzezinski.transportmarket.load;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import pl.witoldbrzezinski.transportmarket.entity.LoadEntity;
-import pl.witoldbrzezinski.transportmarket.service.LoadService;
 
 @Controller
 public class LoadController {

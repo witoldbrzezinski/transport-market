@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.entity;
+package pl.witoldbrzezinski.transportmarket.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,13 +1,13 @@
-package pl.witoldbrzezinski.transportmarket.entity;
+package pl.witoldbrzezinski.transportmarket.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

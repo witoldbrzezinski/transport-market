@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.service;
+package pl.witoldbrzezinski.transportmarket.security;
 
 import java.util.Set;
 
@@ -7,11 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import pl.witoldbrzezinski.transportmarket.entity.RoleEntity;
-import pl.witoldbrzezinski.transportmarket.entity.RoleEnum;
-import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
-import pl.witoldbrzezinski.transportmarket.repository.UserRepository;
 
 @Service("userService")
 public class UserService {

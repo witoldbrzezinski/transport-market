@@ -17,10 +17,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import pl.witoldbrzezinski.transportmarket.entity.LoadEntity;
-import pl.witoldbrzezinski.transportmarket.service.CustomerService;
-import pl.witoldbrzezinski.transportmarket.service.LoadService;
-import pl.witoldbrzezinski.transportmarket.service.UserService;
+import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
+import pl.witoldbrzezinski.transportmarket.customer.CustomerService;
+import pl.witoldbrzezinski.transportmarket.load.LoadService;
+import pl.witoldbrzezinski.transportmarket.security.UserService;
 
 @WebMvcTest
 @AutoConfigureTestDatabase

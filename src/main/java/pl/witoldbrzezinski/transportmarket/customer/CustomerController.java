@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.controller;
+package pl.witoldbrzezinski.transportmarket.customer;
 
 import java.util.List;
 
@@ -7,9 +7,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import pl.witoldbrzezinski.transportmarket.entity.CustomerEntity;
-import pl.witoldbrzezinski.transportmarket.service.CustomerService;
 
 @Controller
 public class CustomerController {

@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.controller;
+package pl.witoldbrzezinski.transportmarket.security;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -12,7 +12,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
-import pl.witoldbrzezinski.transportmarket.service.UserService;
+import pl.witoldbrzezinski.transportmarket.security.LoginController;
+import pl.witoldbrzezinski.transportmarket.security.UserService;
 
 @AutoConfigureMockMvc
 @WithMockUser
