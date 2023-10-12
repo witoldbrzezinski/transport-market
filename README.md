@@ -11,23 +11,25 @@ App is written in Java language on back-end and with HTML and CSS on front-end. 
 - docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=YOURPASSWORD postgres:15.1
 ```
 
-#### Creating Postgres role :
+#### Creating Postgres roles :
 
-- Run SQL command:
+- Run SQL commands:
 
 ```
 CREATE USER dev WITH PASSWORD 'dev';
+CREATE USER test WITH PASSWORD 'test';
 ```
 
-#### Creating database
-- Run SQL command:
+#### Creating databases
+- Run SQL commands:
 
 ```
 CREATE DATABASE transportmarket;
+CREATE DATABASE transportmarket_test;
 ```
 
 MIT License
-Copyright (c) 2022 Witold Brzeziński
+Copyright (c) 2023 Witold Brzeziński
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 

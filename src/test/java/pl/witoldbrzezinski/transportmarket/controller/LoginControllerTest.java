@@ -5,39 +5,28 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.Model;
-
+import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
 import pl.witoldbrzezinski.transportmarket.service.UserService;
 
-@WebMvcTest(LoginController.class)
-@AutoConfigureTestDatabase
-public class LoginControllerTest {
+@AutoConfigureMockMvc
+@WithMockUser
+@ActiveProfiles("test")
+//@Sql(value = "/clean-loads.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+public class LoginControllerTest extends IntegrationTestDB {
 	
 	@Autowired
 	LoginController loginController;
 	
-	@MockBean
+	@Autowired
 	UserService userService;
-	
+	@Autowired
 	private MockMvc mockMvc;
-	
-	@Mock
-    private Model model;
-	
-	
-	@BeforeEach
-	public void init() {
-		mockMvc = MockMvcBuilders.standaloneSetup(loginController).build();
-		}
 	
 	@Test
 	public void controllerShouldNotBeNull() {
