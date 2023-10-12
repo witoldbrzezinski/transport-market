@@ -35,50 +35,54 @@ import pl.witoldbrzezinski.transportmarket.validator.FieldsValueMatch;
 @AllArgsConstructor
 public class UserEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long userId;
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
-  @Column(unique = true)
-  @NotNull(message = "Username can't be empty")
-  @NotBlank(message = "Username can't be empty")
-  private String username;
+	@Column(unique=true)
+	@NotNull(message = "Username can't be empty")
+	@NotBlank(message = "Username can't be empty")
+	private String username;
 
-  @NotNull @NotBlank private String password;
+	@NotNull
+	@NotBlank
+	private String password;
 
-  @Transient private String matchingPassword;
+	@Transient
+	private String matchingPassword;
 
-  private int enabled;
+	private int enabled;
 
-  @Column(unique = true)
-  @NotNull
-  @NotBlank
-  private String email;
+	@Column(unique = true)
+	@NotNull
+	@NotBlank
+	private String email;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinTable(
-      name = "user_roles",
-      joinColumns = @JoinColumn(name = "user_id"),
-      inverseJoinColumns = @JoinColumn(name = "role_id"))
-  private Set<RoleEntity> userRoles = new HashSet<>();
+	@ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinTable(
+			    name = "user_roles",
+				joinColumns = @JoinColumn(name = "user_id"),
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<RoleEntity> userRoles = new HashSet<>();
 
-  @ManyToOne
-  @JoinColumn(name = "customer_id")
-  private CustomerEntity customer;
+	@ManyToOne
+	@JoinColumn(name="customer_id")
+	private CustomerEntity customer;
 
-  @OneToMany(mappedBy = "user")
-  private Set<LoadEntity> loads;
+	@OneToMany(mappedBy="user")
+	private Set<LoadEntity> loads;
 
-  public UserEntity(
-      @NotNull @NotBlank String username,
-      @NotNull @NotBlank String password,
-      int enabled,
-      @NotNull @NotBlank String email,
-      Set<RoleEntity> roles) {
-    this.username = username;
-    this.password = password;
-    this.enabled = enabled;
-    this.email = email;
-    this.userRoles = roles;
-  }
+	public UserEntity(@NotNull @NotBlank String username, @NotNull @NotBlank String password, int enabled,
+					  @NotNull @NotBlank String email, Set<RoleEntity> roles) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.email = email;
+		this.userRoles = roles;
+	}
+    // TODO: delete this
+	public void setRoles(Set<RoleEntity> roles) {
+		this.userRoles = roles;
+	}
+
 }
