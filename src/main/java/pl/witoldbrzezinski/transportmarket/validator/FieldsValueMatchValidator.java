@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import pl.witoldbrzezinski.transportmarket.entity.User;
+import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
 
 public class FieldsValueMatchValidator implements ConstraintValidator<FieldsValueMatch, Object> {
 
@@ -21,7 +21,7 @@ public class FieldsValueMatchValidator implements ConstraintValidator<FieldsValu
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
 		
-		User user = (User) value;
+		UserEntity user = (UserEntity) value;
 		return passwordEncoder.matches(user.getMatchingPassword(), user.getPassword());
 		
 	}

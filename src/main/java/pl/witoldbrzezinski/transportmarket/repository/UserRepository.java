@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pl.witoldbrzezinski.transportmarket.entity.User;
+import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	
-	Optional<User> findByUsernameAndPassword(String username, String password);
-	Optional<User> findByUsername(String username);
-	Optional<User> findByEmail(String email);
-	List<User> findByUsernameEquals(String name);
+	Optional<UserEntity> findByUsernameAndPassword(String username, String password);
+	Optional<UserEntity> findByUsername(String username);
+	Optional<UserEntity> findByEmail(String email);
+	List<UserEntity> findByUsernameEquals(String name);
 }

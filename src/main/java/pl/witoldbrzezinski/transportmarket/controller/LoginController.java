@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import pl.witoldbrzezinski.transportmarket.entity.User;
+import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
 import pl.witoldbrzezinski.transportmarket.service.UserService;
 
 
@@ -28,17 +28,17 @@ public class LoginController {
 	
 	@GetMapping("/register")
 	public String getRegisterPage(Model model) {
-		model.addAttribute("user",new User());
+		model.addAttribute("user",new UserEntity());
 		return "register.html";
 	}
 	
 	@PostMapping("/register")
-	public String register(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) throws Exception {
+	public String register(@ModelAttribute("user") @Valid UserEntity user, BindingResult result, Model model) throws Exception {
 		if(userService.checkIfEmailExist(user.getEmail()) && userService.checkIfUsernameExist(user.getUsername())) {
 			return "registration-existing-user.html";
 		}
 		try {
-		User registeredUser = userService.registerUser(user.getUsername(), user.getPassword(), user.getMatchingPassword(), user.getEmail());
+		UserEntity registeredUser = userService.registerUser(user.getUsername(), user.getPassword(), user.getMatchingPassword(), user.getEmail());
 		if (registeredUser!= null && !user.getUsername().isBlank() && !user.getPassword().isBlank() && !user.getMatchingPassword().isBlank() && ! user.getEmail().isBlank()) {
 			 return "redirect:/";
 		}
@@ -52,7 +52,7 @@ public class LoginController {
 	
 	@GetMapping("/myProfile")
 	public String getMyProfilePage(Model model) {
-		User user = userService.getCurrentUser();
+		UserEntity user = userService.getCurrentUser();
 		model.addAttribute("user",user);
 		return "profile.html";
 	}

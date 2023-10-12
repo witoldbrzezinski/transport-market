@@ -1,5 +1,10 @@
 package pl.witoldbrzezinski.transportmarket.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,11 +21,14 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="roles")
-public class Role {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class RoleEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="role_id")
 	private int roleId;
 	
 	@Enumerated(EnumType.STRING)
@@ -29,41 +37,14 @@ public class Role {
 	private RoleEnum role;
 	
 	@ManyToMany(mappedBy = "userRoles", cascade=CascadeType.ALL)
-	private Set<User> users;
-	
-	public Role() {
-	}
+	private Set<UserEntity> users;
 
-	public Role(@NotNull RoleEnum role) {
+	public RoleEntity(@NotNull RoleEnum role) {
 		this.role = role;
 	}
 
-	public int getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
-
-	public RoleEnum getRole() {
-		return role;
-	}
-
-	public void setRole(RoleEnum role) {
-		this.role = role;
-	}
-
-	public Set<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
-	
-	public static Role createUserWithDefaultRole() {
-		return new Role(RoleEnum.ROLE_USER);
+	public static RoleEntity createUserWithDefaultRole() {
+		return new RoleEntity(RoleEnum.ROLE_USER);
 	}
 	
 	

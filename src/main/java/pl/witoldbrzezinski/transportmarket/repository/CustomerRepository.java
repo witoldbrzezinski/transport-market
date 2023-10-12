@@ -4,10 +4,10 @@ package pl.witoldbrzezinski.transportmarket.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import pl.witoldbrzezinski.transportmarket.entity.Customer;
+import pl.witoldbrzezinski.transportmarket.entity.CustomerEntity;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+public interface CustomerRepository extends JpaRepository<CustomerEntity, Integer> {
 	
-	Customer findByName(String name);
+	CustomerEntity findByName(String name);
 }

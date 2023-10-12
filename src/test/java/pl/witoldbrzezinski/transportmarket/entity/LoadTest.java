@@ -26,7 +26,7 @@ public class LoadTest {
 	@Autowired
 	private LoadRepository loadRepository;
 	
-	private Load testLoad;
+	private LoadEntity testLoad;
 	
 	@BeforeEach
 	public void init() {
@@ -34,14 +34,14 @@ public class LoadTest {
 		LocalDateTime unloadingDate = LocalDateTime.of(2100, Month.APRIL,2,10,00);
 		BigDecimal price = new BigDecimal(1000);
 		BigDecimal weight = new BigDecimal(9);
-		User user = new User();
-		testLoad = new Load("Test", loadingDate, "Loading city", "00-000", unloadingDate, "Unloding city", "99-999", price, "TestLoad", weight, user);
+		UserEntity user = new UserEntity();
+		testLoad = new LoadEntity("Test", loadingDate, "Loading city", "00-000", unloadingDate, "Unloding city", "99-999", price, "TestLoad", weight, user);
 	}
 	
 	
 	@Test
 	public void createNewLoadShouldNotBeNull() {
-		Load savedLoad = loadRepository.save(testLoad);
+		LoadEntity savedLoad = loadRepository.save(testLoad);
 		assertNotNull(savedLoad);
 	}
 	
@@ -55,14 +55,14 @@ public class LoadTest {
 	@Test
 	public void searchingLoadWithWrongNameShouldNotFindLoad() {
 		String name = "Wrong test";
-		Load load = loadRepository.findByName(name);
+		LoadEntity load = loadRepository.findByName(name);
 		assertNull(load);
 	
 	}
 	
 	@Test
 	public void listOfLoadsShouldHasSizeGreaterThanZero() {
-		List<Load> loads = new ArrayList<>();
+		List<LoadEntity> loads = new ArrayList<>();
 		loads.add(testLoad);
 		assertThat(loads).size().isGreaterThan(0);
 	}

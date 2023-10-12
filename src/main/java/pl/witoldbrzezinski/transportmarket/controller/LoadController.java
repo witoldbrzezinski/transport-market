@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pl.witoldbrzezinski.transportmarket.entity.Load;
+import pl.witoldbrzezinski.transportmarket.entity.LoadEntity;
 import pl.witoldbrzezinski.transportmarket.service.LoadService;
 
 @Controller
@@ -37,7 +37,7 @@ public class LoadController {
 		
 		int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        Page<Load> loadPage = loadService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+        Page<LoadEntity> loadPage = loadService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
         model.addAttribute("loadPage", loadPage);
         int totalPages = loadPage.getTotalPages();
         if (totalPages > 0) {
@@ -46,7 +46,7 @@ public class LoadController {
                 .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-		List<Load> loadList = loadService.getAllLoads();	
+		List<LoadEntity> loadList = loadService.getAllLoads();
 		model.addAttribute("loads",loadList);
 		
 		return "index.html";
@@ -56,14 +56,14 @@ public class LoadController {
 	@GetMapping("/addNewLoad")
 	public String addLoad(Model model) {
 		
-		Load load = new Load();
+		LoadEntity load = new LoadEntity();
 		model.addAttribute("load",load);
 		
 		return "add-load.html";
 	}
 	
 	@PostMapping("/confirmLoadAdded")
-	public String saveLoad(@Valid @ModelAttribute("load") Load load, BindingResult result, Model model) {
+	public String saveLoad(@Valid @ModelAttribute("load") LoadEntity load, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "add-load.html";
 		}
@@ -74,14 +74,14 @@ public class LoadController {
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/updateLoad/{loadId}")
 	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
-		Load load = loadService.getLoad(loadId);
+		LoadEntity load = loadService.getLoad(loadId);
 		model.addAttribute("load",load);
 		
 		return "update-load.html";
 	}
 	
 	@PostMapping("/updateLoadConfirm/{loadId}")
-	public String updateLoadConfrim(@PathVariable("loadId") long loadId,@Valid @ModelAttribute("load") Load load, BindingResult result) {
+	public String updateLoadConfrim(@PathVariable("loadId") long loadId, @Valid @ModelAttribute("load") LoadEntity load, BindingResult result) {
 		if (result.hasErrors()) {
 			return "update-load.html";
 		}
@@ -91,7 +91,7 @@ public class LoadController {
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping("/deleteLoad/{loadId}")
-	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") Load load) {
+	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") LoadEntity load) {
 		loadService.deleteLoad(load);
 		return "redirect:/";
 	}

@@ -11,8 +11,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import pl.witoldbrzezinski.transportmarket.entity.Load;
-import pl.witoldbrzezinski.transportmarket.entity.User;
+import pl.witoldbrzezinski.transportmarket.entity.LoadEntity;
+import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
 
 
 public class LoadServiceTest {
@@ -20,7 +20,7 @@ public class LoadServiceTest {
 	
 	LoadService loadService;
 	
-	private Load testLoad;
+	private LoadEntity testLoad;
 	
 	@BeforeEach
 	public void init() {
@@ -29,14 +29,14 @@ public class LoadServiceTest {
 		LocalDateTime unloadingDate = LocalDateTime.of(2100, Month.APRIL,2,10,00);
 		BigDecimal price = new BigDecimal(1000);
 		BigDecimal weight = new BigDecimal(9);
-		User user = new User();
-		testLoad = new Load("Test", loadingDate, "Loading city", "00-000", unloadingDate, "Unloding city", "99-999", price, "TestLoad", weight, user);
+		UserEntity user = new UserEntity();
+		testLoad = new LoadEntity("Test", loadingDate, "Loading city", "00-000", unloadingDate, "Unloding city", "99-999", price, "TestLoad", weight, user);
 	}
 	
 	
 	@Test
 	public void gettingTheListOfLoadsShouldReturnCorrectSize() {
-		List<Load> loadList = loadService.getAllLoads();
+		List<LoadEntity> loadList = loadService.getAllLoads();
 		loadList.add(testLoad);
 		assertThat(loadList.size()).isEqualTo(1);
 	}

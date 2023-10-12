@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import pl.witoldbrzezinski.transportmarket.entity.Load;
+import pl.witoldbrzezinski.transportmarket.entity.LoadEntity;
 import pl.witoldbrzezinski.transportmarket.repository.LoadRepository;
 
 @Service("loadService")
@@ -24,39 +24,39 @@ public class LoadService {
 	@Autowired
 	UserService userService;
 	
-    public List<Load> getAllLoads(){
+    public List<LoadEntity> getAllLoads(){
     	
-        List<Load> loadList = loadRepository.findAll();
+        List<LoadEntity> loadList = loadRepository.findAll();
          
         if(loadList.size() > 0) {
             return loadList;
         } else {
-            return new ArrayList<Load>();
+            return new ArrayList<LoadEntity>();
         }
     }
     
-    public void saveOrUpdateLoad(Load load) {
+    public void saveOrUpdateLoad(LoadEntity load) {
     	load.setUser(userService.getCurrentUser());
     	loadRepository.save(load);
     	
     }
 
-	public Load getLoad(long loadId) {
+	public LoadEntity getLoad(long loadId) {
 		// TODO Auto-generated method stub
 		return loadRepository.getById(loadId);
 	}
 	
-	public void deleteLoad(Load load) {
+	public void deleteLoad(LoadEntity load) {
 		loadRepository.delete(load);
 	}
 	// thanks to https://www.baeldung.com/spring-thymeleaf-pagination
-    public Page<Load> findPaginated(Pageable pageable) {
+    public Page<LoadEntity> findPaginated(Pageable pageable) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
-        List<Load> list;
-        List<Load> loadsList = loadRepository.findAll();
-        loadsList.sort(Comparator.comparing(Load::getLoadId));
+        List<LoadEntity> list;
+        List<LoadEntity> loadsList = loadRepository.findAll();
+        loadsList.sort(Comparator.comparing(LoadEntity::getLoadId));
 		if (loadsList.size() < startItem) {
             list = Collections.emptyList();
         } else {
@@ -64,8 +64,8 @@ public class LoadService {
             list = loadsList.subList(startItem, toIndex);
         }
 
-        Page<Load> loadPage
-          = new PageImpl<Load>(list, PageRequest.of(currentPage, pageSize), loadsList.size());
+        Page<LoadEntity> loadPage
+          = new PageImpl<LoadEntity>(list, PageRequest.of(currentPage, pageSize), loadsList.size());
         return loadPage;
     }
 

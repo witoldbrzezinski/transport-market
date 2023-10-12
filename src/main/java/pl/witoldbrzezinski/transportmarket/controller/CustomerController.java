@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import pl.witoldbrzezinski.transportmarket.entity.Customer;
+import pl.witoldbrzezinski.transportmarket.entity.CustomerEntity;
 import pl.witoldbrzezinski.transportmarket.service.CustomerService;
 
 @Controller
@@ -21,7 +21,7 @@ public class CustomerController {
 	@GetMapping("/customers")
 	public String getAllCustomers(Model model) {
 		
-		List<Customer> customerList = customerService.getAllCustomers();
+		List<CustomerEntity> customerList = customerService.getAllCustomers();
 		
 		model.addAttribute("customers",customerList);
 		

@@ -23,18 +23,18 @@ public class CustomerTest {
 	@Autowired
 	private CustomerRepository customerRepository;
 	
-	private Customer testCustomer;
+	private CustomerEntity testCustomer;
 	
 	@BeforeEach
 	public void init() {
-		testCustomer = new Customer("Customer","Poland","Warsaw","test@test.com","123456");
+		testCustomer = new CustomerEntity("Customer","Poland","Warsaw","test@test.com","123456");
 		
 	}
 	
 	
 	@Test
 	public void createNewCustomerShouldNotBeNull() {
-		Customer savedCustomer = customerRepository.save(testCustomer);
+		CustomerEntity savedCustomer = customerRepository.save(testCustomer);
 		assertNotNull(savedCustomer);
 	}
 	
@@ -48,14 +48,14 @@ public class CustomerTest {
 	@Test
 	public void searchingCustomerWithWrongNameShouldNotFindCustomer() {
 		String name = "Wrong name";
-		Customer customer = customerRepository.findByName(name);
+		CustomerEntity customer = customerRepository.findByName(name);
 		assertNull(customer);
 	
 	}
 	
 	@Test
 	public void listOfCustomersShouldHasSizeGreaterThanZero() {
-		 List<Customer> customers = new ArrayList<>(); 
+		 List<CustomerEntity> customers = new ArrayList<>();
 		 customers.add(testCustomer);
 		 assertThat(customers).size().isGreaterThan(0); 
 	}

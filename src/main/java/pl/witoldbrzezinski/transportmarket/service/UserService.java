@@ -8,9 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import pl.witoldbrzezinski.transportmarket.entity.Role;
+import pl.witoldbrzezinski.transportmarket.entity.RoleEntity;
 import pl.witoldbrzezinski.transportmarket.entity.RoleEnum;
-import pl.witoldbrzezinski.transportmarket.entity.User;
+import pl.witoldbrzezinski.transportmarket.entity.UserEntity;
 import pl.witoldbrzezinski.transportmarket.repository.UserRepository;
 
 @Service("userService")
@@ -24,9 +24,9 @@ public class UserService {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	public User registerUser(String username, String password, String matchingPassword, String email)  {	
-			User user = new User();
-			Role role = new Role();
+	public UserEntity registerUser(String username, String password, String matchingPassword, String email)  {
+			UserEntity user = new UserEntity();
+			RoleEntity role = new RoleEntity();
 			user.setEnabled(ENABLED_ON);	
 			user.setUsername(username);
 			if (password.equals(matchingPassword)) {
@@ -49,15 +49,15 @@ public class UserService {
 		return userRepository.findByEmail(email).isPresent();
 	}
 	
-	public User getUserByUsername(String username) {	
+	public UserEntity getUserByUsername(String username) {
 		return userRepository.findByUsernameEquals(username).get(0);
 		
 	}
 	
-	public User getCurrentUser() {
+	public UserEntity getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentUsername = authentication.getName();
-		User user = getUserByUsername(currentUsername);
+		UserEntity user = getUserByUsername(currentUsername);
 		return user;
 		
 	}
