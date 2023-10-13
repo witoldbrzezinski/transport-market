@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.validator;
+package pl.witoldbrzezinski.transportmarket.utils;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;

@@ -1,6 +1,6 @@
 CREATE TABLE loads
 (
-	load_id SERIAL PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	name CHARACTER VARYING(255),
 	loading_date timestamp with time zone,
 	loading_city CHARACTER VARYING(255),
@@ -11,7 +11,10 @@ CREATE TABLE loads
 	weight_in_tones numeric(10,3),
 	load_type CHARACTER VARYING(255),
 	price_in_PLN numeric (10,2),
-	user_id INTEGER
+	user_id INTEGER,
+	is_deleted boolean NOT NULL DEFAULT false,
+    uuid VARCHAR(36) NOT NULL,
+    version BIGINT DEFAULT 0
 );
 
 

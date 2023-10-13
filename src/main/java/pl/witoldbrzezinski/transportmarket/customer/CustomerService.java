@@ -14,7 +14,7 @@ public class CustomerService {
   public List<CustomerEntity> getAllCustomers() {
     List<CustomerEntity> customerList = repository.findAll();
 
-    if (customerList.size() > 0) {
+    if (!customerList.isEmpty()) {
       return customerList;
     } else {
       return new ArrayList<CustomerEntity>();

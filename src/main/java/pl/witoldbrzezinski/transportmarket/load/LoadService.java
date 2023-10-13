@@ -46,14 +46,13 @@ public class LoadService {
 	public void deleteLoad(LoadEntity load) {
 		loadRepository.delete(load);
 	}
-	// thanks to https://www.baeldung.com/spring-thymeleaf-pagination
     public Page<LoadEntity> findPaginated(Pageable pageable) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
         List<LoadEntity> list;
         List<LoadEntity> loadsList = loadRepository.findAll();
-        loadsList.sort(Comparator.comparing(LoadEntity::getLoadId));
+        loadsList.sort(Comparator.comparing(LoadEntity::getId));
 		if (loadsList.size() < startItem) {
             list = Collections.emptyList();
         } else {

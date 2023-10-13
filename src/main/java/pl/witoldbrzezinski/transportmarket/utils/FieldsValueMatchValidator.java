@@ -1,4 +1,4 @@
-package pl.witoldbrzezinski.transportmarket.validator;
+package pl.witoldbrzezinski.transportmarket.utils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
