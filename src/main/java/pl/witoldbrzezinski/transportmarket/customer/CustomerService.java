@@ -1,23 +1,18 @@
 package pl.witoldbrzezinski.transportmarket.customer;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+public interface CustomerService {
 
-@Service("customerService")
-public class CustomerService {
+    List<CustomerDTOResponse> getAll();
 
-  @Autowired CustomerRepository repository;
+    CustomerDTOResponse getById(Long id);
 
-  public List<CustomerEntity> getAllCustomers() {
-    List<CustomerEntity> customerList = repository.findAll();
+    CustomerDTOResponse save(CustomerDTORequest customerDTORequest);
 
-    if (!customerList.isEmpty()) {
-      return customerList;
-    } else {
-      return new ArrayList<CustomerEntity>();
-    }
-  }
+    CustomerDTOResponse update(Long id, CustomerDTORequest customerDTORequest);
+
+    void delete(Long id);
+
+
 }

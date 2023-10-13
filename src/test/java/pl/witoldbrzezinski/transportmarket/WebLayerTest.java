@@ -18,7 +18,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerService;
+import pl.witoldbrzezinski.transportmarket.customer.CustomerServiceImpl;
 import pl.witoldbrzezinski.transportmarket.load.LoadService;
 import pl.witoldbrzezinski.transportmarket.security.UserService;
 
@@ -30,7 +30,7 @@ public class WebLayerTest {
 	private MockMvc mockMvc;
 	
 	@MockBean
-	CustomerService customerService;
+    CustomerServiceImpl customerService;
 	@MockBean
 	LoadService loadService;
 	@MockBean

@@ -12,8 +12,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerController;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerService;
 
 @AutoConfigureMockMvc
 @WithMockUser
@@ -23,7 +21,8 @@ public class CustomerControllerTest extends IntegrationTestDB {
 
   @Autowired
   CustomerController customerController;
-  @Autowired CustomerService customerService;
+  @Autowired
+  CustomerServiceImpl customerService;
   @Autowired private MockMvc mockMvc;
 
   @Test
