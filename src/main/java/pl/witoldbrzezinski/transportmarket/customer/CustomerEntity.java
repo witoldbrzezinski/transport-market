@@ -16,37 +16,35 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="customers")
+@Table(name = "customers")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerEntity {
-	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerId;
 
-	private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int customerId;
 
-	private String country;
+  private String name;
 
-	private String city;
+  private String country;
 
-	private String email;
+  private String city;
 
-	private String phone;
+  private String email;
 
-	@OneToMany(mappedBy="customer")
-	private Set<UserEntity> users;
+  private String phone;
 
+  @OneToMany(mappedBy = "customer")
+  private Set<UserEntity> users;
 
-	public CustomerEntity(String name, String country, String city, String email, String phone) {
-		this.name = name;
-		this.country = country;
-		this.city = city;
-		this.email = email;
-		this.phone = phone;
-	}
-
+  public CustomerEntity(String name, String country, String city, String email, String phone) {
+    this.name = name;
+    this.country = country;
+    this.city = city;
+    this.email = email;
+    this.phone = phone;
+  }
 }

@@ -11,19 +11,16 @@ import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 
 public class FieldsValueMatchValidator implements ConstraintValidator<FieldsValueMatch, Object> {
 
-	@Autowired
-	PasswordEncoder passwordEncoder;
-	
-	public void initialize(FieldsValueMatch constraintAnnotation) {
-		passwordEncoder = new BCryptPasswordEncoder();
-	}
+  @Autowired PasswordEncoder passwordEncoder;
 
-	@Override
-	public boolean isValid(Object value, ConstraintValidatorContext context) {
-		
-		UserEntity user = (UserEntity) value;
-		return passwordEncoder.matches(user.getMatchingPassword(), user.getPassword());
-		
-	}
+  public void initialize(FieldsValueMatch constraintAnnotation) {
+    passwordEncoder = new BCryptPasswordEncoder();
+  }
 
+  @Override
+  public boolean isValid(Object value, ConstraintValidatorContext context) {
+
+    UserEntity user = (UserEntity) value;
+    return passwordEncoder.matches(user.getMatchingPassword(), user.getPassword());
+  }
 }

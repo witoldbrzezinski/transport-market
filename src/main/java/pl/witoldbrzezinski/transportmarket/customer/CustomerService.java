@@ -8,19 +8,16 @@ import org.springframework.stereotype.Service;
 
 @Service("customerService")
 public class CustomerService {
-	
-	@Autowired
-	CustomerRepository repository;
-	
-    public List<CustomerEntity> getAllCustomers()
-    {
-        List<CustomerEntity> customerList = repository.findAll();
-         
-        if(customerList.size() > 0) {
-            return customerList;
-        } else {
-            return new ArrayList<CustomerEntity>();
-        }
-    }
 
+  @Autowired CustomerRepository repository;
+
+  public List<CustomerEntity> getAllCustomers() {
+    List<CustomerEntity> customerList = repository.findAll();
+
+    if (customerList.size() > 0) {
+      return customerList;
+    } else {
+      return new ArrayList<CustomerEntity>();
+    }
+  }
 }
