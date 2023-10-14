@@ -14,6 +14,8 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+
+
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -21,7 +23,8 @@ public class UserService {
 	public UserEntity registerUser(String username, String password, String matchingPassword, String email)  {
 			UserEntity user = new UserEntity();
 			RoleEntity role = new RoleEntity();
-			user.setEnabled(ENABLED_ON);	
+			user.setEnabled(ENABLED_ON);
+	//		user.setCustomer();
 			user.setUsername(username);
 			if (password.equals(matchingPassword)) {
 				user.setPassword(passwordEncoder.encode(password));

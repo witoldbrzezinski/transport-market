@@ -40,7 +40,7 @@ public class UserEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long userId;
+  private Long id;
 
   @Column(unique = true)
   @NotNull(message = "Username can't be empty")
