@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoadController {
 	
 	@Autowired
-	LoadService loadService;
+	LoadServiceImpl loadService;
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/")
@@ -32,7 +32,7 @@ public class LoadController {
 		
 		int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
-        Page<LoadEntity> loadPage = loadService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+        Page<LoadDTOResponse> loadPage = loadService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
         model.addAttribute("loadPage", loadPage);
         int totalPages = loadPage.getTotalPages();
         if (totalPages > 0) {
@@ -41,7 +41,7 @@ public class LoadController {
                 .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
-		List<LoadEntity> loadList = loadService.getAllLoads();
+		List<LoadDTOResponse> loadList = loadService.getAll();
 		model.addAttribute("loads",loadList);
 		
 		return "index.html";
@@ -62,15 +62,15 @@ public class LoadController {
 		if (result.hasErrors()) {
 			return "add-load.html";
 		}
-		loadService.saveOrUpdateLoad(load);
+	//	loadService.save(load);
 		return "redirect:/";
 	}
 	
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@RequestMapping("/updateLoad/{loadId}")
 	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
-		LoadEntity load = loadService.getLoad(loadId);
-		model.addAttribute("load",load);
+	//	LoadEntity load = loadService.getLoad(loadId);
+	//	model.addAttribute("load",load);
 		
 		return "update-load.html";
 	}
@@ -80,14 +80,14 @@ public class LoadController {
 		if (result.hasErrors()) {
 			return "update-load.html";
 		}
-		loadService.saveOrUpdateLoad(load);
+	//	loadService.saveOrUpdateLoad(load);
 		return "redirect:/";
 	}
 	
 	@Secured({"ROLE_ADMIN"})
 	@RequestMapping("/deleteLoad/{loadId}")
 	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") LoadEntity load) {
-		loadService.deleteLoad(load);
+	//	loadService.deleteLoad(load);
 		return "redirect:/";
 	}
 

@@ -14,8 +14,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
-import pl.witoldbrzezinski.transportmarket.load.LoadController;
-import pl.witoldbrzezinski.transportmarket.load.LoadService;
 
 @AutoConfigureMockMvc
 @WithMockUser
@@ -27,7 +25,7 @@ public class LoadControllerTest extends IntegrationTestDB {
 	private LoadController loadController;
 	
 	@Autowired
-	private LoadService loadService;
+	private LoadServiceImpl loadService;
 	@Autowired
 	private MockMvc mockMvc;
 	

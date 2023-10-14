@@ -17,9 +17,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import pl.witoldbrzezinski.transportmarket.load.LoadDTOResponse;
 import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
 import pl.witoldbrzezinski.transportmarket.customer.CustomerServiceImpl;
-import pl.witoldbrzezinski.transportmarket.load.LoadService;
+import pl.witoldbrzezinski.transportmarket.load.LoadServiceImpl;
 import pl.witoldbrzezinski.transportmarket.security.UserService;
 
 @WebMvcTest
@@ -32,14 +33,14 @@ public class WebLayerTest {
 	@MockBean
     CustomerServiceImpl customerService;
 	@MockBean
-	LoadService loadService;
+    LoadServiceImpl loadService;
 	@MockBean
 	UserService userService;
 	
 	@Test
 	@WithMockUser
 	public void basicTemplateShouldContainAppName() throws Exception {
-		Page<LoadEntity> loadPage = Mockito.mock(Page.class);
+		Page<LoadDTOResponse> loadPage = Mockito.mock(Page.class);
 		when(loadService.findPaginated(Mockito.any())).thenReturn(loadPage);
 		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
 				.andExpect(content().string(containsString("Transport Market")));
