@@ -58,12 +58,12 @@ public class UserEntity {
   @NotBlank
   private String email;
 
-  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
-      name = "user_roles",
-      joinColumns = @JoinColumn(name = "user_id"),
-      inverseJoinColumns = @JoinColumn(name = "role_id"))
-  private Set<RoleEntity> userRoles = new HashSet<>();
+          name = "user_role",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<RoleEntity> roles = new HashSet<>();
 
   @ManyToOne
   @JoinColumn(name = "customer_id")
@@ -88,12 +88,12 @@ public class UserEntity {
     this.password = password;
     this.enabled = enabled;
     this.email = email;
-    this.userRoles = roles;
+    this.roles = roles;
   }
 
   // TODO: delete this
   public void setRoles(Set<RoleEntity> roles) {
-    this.userRoles = roles;
+    this.roles = roles;
   }
 
   @Override

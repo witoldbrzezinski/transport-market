@@ -15,7 +15,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class LoadDTOResponse {
 
-
+  private Long id;
   private String name;
   private LocalDateTime loadingDate;
   private String loadingCity;

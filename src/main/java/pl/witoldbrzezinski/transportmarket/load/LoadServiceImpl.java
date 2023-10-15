@@ -65,14 +65,16 @@ public class LoadServiceImpl implements LoadService {
     int currentPage = pageable.getPageNumber();
     int startItem = currentPage * pageSize;
     List<LoadDTOResponse> list;
-    List<LoadDTOResponse> loadsList = loadRepository.findAll().stream().map(loadMapper::toDTO).toList();
-    loadsList.sort(Comparator.comparing(LoadDTOResponse::getName));
-    if (loadsList.size() < startItem) {
+    List<LoadDTOResponse> loads = loadRepository.findAll().stream().map(loadMapper::toDTO).toList();
+    // TODO fix sorting
+ //   loads.sort(Comparator.comparing(LoadDTOResponse::getId));
+    if (loads.size() < startItem) {
       list = Collections.emptyList();
     } else {
-      int toIndex = Math.min(startItem + pageSize, loadsList.size());
-      list = loadsList.subList(startItem, toIndex);
+
+      int toIndex = Math.min(startItem + pageSize, loads.size());
+      list = loads.subList(startItem, toIndex);
     }
-      return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), loadsList.size());
+      return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), loads.size());
   }
 }

@@ -1,30 +1,33 @@
 package pl.witoldbrzezinski.transportmarket.security;
 
 import java.util.Set;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.witoldbrzezinski.transportmarket.customer.CustomerRepository;
 
-@Service("userService")
+@Service
+@RequiredArgsConstructor
 public class UserService {
 	
 	private static final int ENABLED_ON = 1;
-	
-	@Autowired
-	private UserRepository userRepository;
+	private static final Integer ROLE_USER_ID = 2;
 
-
-	
+	private final UserRepository userRepository;
+	private final CustomerRepository customerRepository;
+	private final RoleRepository roleRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
 	public UserEntity registerUser(String username, String password, String matchingPassword, String email)  {
 			UserEntity user = new UserEntity();
-			RoleEntity role = new RoleEntity();
+			RoleEntity role = roleRepository.getById(ROLE_USER_ID);
 			user.setEnabled(ENABLED_ON);
-	//		user.setCustomer();
+			// TODO change this line
+			user.setCustomer(customerRepository.getById(1L));
 			user.setUsername(username);
 			if (password.equals(matchingPassword)) {
 				user.setPassword(passwordEncoder.encode(password));
@@ -33,7 +36,7 @@ public class UserService {
 				throw new RuntimeException("Passwords do not match!");
 			}
 			user.setEmail(email);
-			role.setRole(RoleEnum.ROLE_USER);
+		//	role.setRole(RoleEnum.ROLE_USER);
 			user.setRoles(Set.of(role));
 			return userRepository.save(user);				
 	}
@@ -54,8 +57,7 @@ public class UserService {
 	public UserEntity getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentUsername = authentication.getName();
-		UserEntity user = getUserByUsername(currentUsername);
-		return user;
+        return getUserByUsername(currentUsername);
 		
 	}
 	

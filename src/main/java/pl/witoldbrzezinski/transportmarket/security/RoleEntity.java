@@ -22,29 +22,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class RoleEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int roleId;
+	private int id;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name="role",unique = true)
-	@NotNull
 	private RoleEnum role;
-	
-	@ManyToMany(mappedBy = "userRoles", cascade=CascadeType.ALL)
-	private Set<UserEntity> users;
 
-	public RoleEntity(@NotNull RoleEnum role) {
+	public RoleEntity(RoleEnum role) {
 		this.role = role;
 	}
 
-	public static RoleEntity createUserWithDefaultRole() {
-		return new RoleEntity(RoleEnum.ROLE_USER);
-	}
-	
-	
 }
 

@@ -10,24 +10,25 @@ CREATE TABLE users
    version BIGINT DEFAULT 0
 );
 
-CREATE TABLE authorities
-(
- username CHARACTER VARYING(50) NOT NULL,
- authority CHARACTER VARYING(50) NOT NULL,
- UNIQUE (username,authority)
-) ;
-
-ALTER TABLE ONLY authorities
-    ADD CONSTRAINT fk_user FOREIGN KEY (username) REFERENCES users(username);
-
 CREATE TABLE roles
 (
- role_id SERIAL PRIMARY KEY,
+ id SERIAL PRIMARY KEY,
  role CHARACTER VARYING(50) NOT NULL
 ) ;
 
 INSERT INTO public.roles(
-	role_id, role)
+	id, role)
 	VALUES (1, 'ROLE_ADMIN'),
 	(2,'ROLE_USER');
+
+
+CREATE TABLE user_role(
+    user_id int NOT NULL,
+    role_id int NOT NULL,
+    PRIMARY KEY (user_id,role_id),
+    CONSTRAINT user_role_fk_1
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT use_role_fk_2
+    FOREIGN KEY (role_id) REFERENCES roles(id)
+);
 
