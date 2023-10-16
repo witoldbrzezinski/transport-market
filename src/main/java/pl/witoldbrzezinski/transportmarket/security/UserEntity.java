@@ -25,6 +25,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 import pl.witoldbrzezinski.transportmarket.customer.CustomerEntity;
 import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
 import pl.witoldbrzezinski.transportmarket.utils.FieldsValueMatch;
@@ -36,6 +37,7 @@ import pl.witoldbrzezinski.transportmarket.utils.FieldsValueMatch;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Where(clause = "is_deleted = false")
 public class UserEntity {
 
   @Id

@@ -9,6 +9,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pl.witoldbrzezinski.transportmarket.security.UserService;
+
+import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +19,7 @@ public class LoadServiceImpl implements LoadService {
 
   private final LoadRepository loadRepository;
   private final LoadMapper loadMapper;
+  private final UserService userService;
 
   @Override
   public List<LoadDTOResponse> getAll() {
@@ -32,11 +36,13 @@ public class LoadServiceImpl implements LoadService {
   @Override
   public LoadDTOResponse save(LoadDTORequest loadDTORequest) {
     LoadEntity loadEntity = loadMapper.toEntity(loadDTORequest);
+    loadEntity.setUser(userService.getCurrentUser());
     loadRepository.save(loadEntity);
     return loadMapper.toDTO(loadEntity);
   }
 
   @Override
+  @Transactional
   public LoadDTOResponse update(Long id, LoadDTORequest loadDTORequest) {
     LoadEntity loadEntity =
         loadRepository.findById(id).orElseThrow(() -> new LoadNotFoundException(id));
@@ -54,6 +60,7 @@ public class LoadServiceImpl implements LoadService {
   }
 
   @Override
+  @Transactional
   public void delete(Long id) {
     LoadEntity loadEntity =
         loadRepository.findById(id).orElseThrow(() -> new LoadNotFoundException(id));

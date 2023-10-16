@@ -11,7 +11,7 @@
 
 	<div id="container" style="margin-left:25px">
 		<h3>Update Load</h3>
-		<form action="#" th:action="@{/updateLoadConfirm/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post">
+		<form action="#" th:action="@{/updateLoadConfirm/{loadId}(loadId=${load.id})}" th:object="${load}" method="post">
 		<div class="col-md-6 form-group">
 		<label>Name:</label>
     	<input type="text" id="name" name="name" class="form-control" th:value="*{name}" />

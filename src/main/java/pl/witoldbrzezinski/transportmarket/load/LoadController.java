@@ -5,7 +5,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
@@ -20,11 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequiredArgsConstructor
 public class LoadController {
-	
-	@Autowired
-	LoadServiceImpl loadService;
-	
+
+	private final LoadService loadService;
+
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/")
 	public String index(Model model,  @RequestParam("page") Optional<Integer> page, 
@@ -50,44 +51,41 @@ public class LoadController {
 	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@GetMapping("/addNewLoad")
 	public String addLoad(Model model) {
-		
 		LoadEntity load = new LoadEntity();
 		model.addAttribute("load",load);
-		
 		return "add-load.html";
 	}
-	
+	@Secured({"ROLE_ADMIN", "ROLE_USER"})
 	@PostMapping("/confirmLoadAdded")
-	public String saveLoad(@Valid @ModelAttribute("load") LoadEntity load, BindingResult result, Model model) {
+	public String saveLoad(@Valid @ModelAttribute("load") LoadDTORequest load, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "add-load.html";
 		}
-	//	loadService.save(load);
-		return "redirect:/";
-	}
-	
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
-	@RequestMapping("/updateLoad/{loadId}")
-	public String updateLoad(@PathVariable("loadId") long loadId, Model model) {
-	//	LoadEntity load = loadService.getLoad(loadId);
-	//	model.addAttribute("load",load);
-		
-		return "update-load.html";
-	}
-	
-	@PostMapping("/updateLoadConfirm/{loadId}")
-	public String updateLoadConfrim(@PathVariable("loadId") long loadId, @Valid @ModelAttribute("load") LoadEntity load, BindingResult result) {
-		if (result.hasErrors()) {
-			return "update-load.html";
-		}
-	//	loadService.saveOrUpdateLoad(load);
+		loadService.save(load);
 		return "redirect:/";
 	}
 	
 	@Secured({"ROLE_ADMIN"})
-	@RequestMapping("/deleteLoad/{loadId}")
-	public String deleteLoad(@PathVariable("loadId") long loadId, @ModelAttribute("load") LoadEntity load) {
-	//	loadService.deleteLoad(load);
+	@RequestMapping("/updateLoad/{id}")
+	public String updateLoad(@PathVariable("id") long id, Model model) {
+		LoadDTOResponse load = loadService.getById(id);
+		model.addAttribute("load",load);
+		return "update-load.html";
+	}
+	@Secured({"ROLE_ADMIN"})
+	@PostMapping("/updateLoadConfirm/{id}")
+	public String updateLoadConfirm(Model model, @PathVariable("id") long id, @Valid @ModelAttribute("load") LoadDTORequest load, BindingResult result) {
+		if (result.hasErrors()) {
+			return "update-load.html";
+		}
+		loadService.update(id,load);
+		return "redirect:/";
+	}
+	
+	@Secured({"ROLE_ADMIN"})
+	@RequestMapping("/deleteLoad/{id}")
+	public String deleteLoad(Model model, @PathVariable("id") long id) {
+		loadService.delete(id);
 		return "redirect:/";
 	}
 

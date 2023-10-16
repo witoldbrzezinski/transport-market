@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Where;
 import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 
 @Entity
@@ -22,6 +23,7 @@ import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Where(clause = "is_deleted = false")
 public class CustomerEntity {
 
   @Id

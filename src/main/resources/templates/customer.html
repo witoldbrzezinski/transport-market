@@ -33,7 +33,7 @@
             <td colspan="6" style="text-align:center"> No Customers Available </td>
         </tr>
         <tr th:each="customer : ${customers}">
-         	<td><span th:text="${customer.customerId}"> # </span></td>   
+         	<td><span th:text="${customer.id}"> # </span></td>
          	<td><span th:text="${customer.name}"> Name </span></td>
          	<td><span th:text="${customer.country}"> Country </span></td>   
          	<td><span th:text="${customer.city}"> City </span></td>  

@@ -48,7 +48,7 @@
             <td colspan="13" style="text-align:center"> No Loads Available </td>
         </tr>
         <tr th:each="load : ${loadPage.content}">
-         	<td><span th:text="${load.loadId}"> # </span></td>
+         	<td><span th:text="${load.id}"> # </span></td>
             <td><span th:text="${load.name}"> Name </span></td>
             <td><span th:text="${#temporals.format(load.loadingDate, 'yyyy-MM-dd')}"> Loading date </span></td>
             <td><span th:text="${load.loadingCity}"> Loading City </span></td>
@@ -61,8 +61,8 @@
             <td><span th:text="${#numbers.formatDecimal(load.price,0,2,'COMMA')}"> Price </span></td>
             <td><span th:text="${load.user.customer.name}"> Customer </span></td>
             <td><a th:href="'mailto:' + ${load.user.email}" th:text="${load.user.email}">Email </a></td>
-            <td sec:authorize="hasRole('ADMIN')"><form action="#" th:action="@{/updateLoad/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-warning">Update</button></span></form>
-            <td sec:authorize="hasRole('ADMIN')"><form action="#" th:action="@{/deleteLoad/{loadId}(loadId=${load.loadId})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-danger" onclick="if (!(confirm('Are you sure you want to delete this load?'))) return false">Delete</button></span></form>
+            <td sec:authorize="hasRole('ADMIN')"><form action="#" th:action="@{/updateLoad/{id}(id=${load.id})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-warning">Update</button></span></form>
+            <td sec:authorize="hasRole('ADMIN')"><form action="#" th:action="@{/deleteLoad/{id}(id=${load.id})}" th:object="${load}" method="post"><span><button type="submit" class="btn btn-danger" onclick="if (!(confirm('Are you sure you want to delete this load?'))) return false">Delete</button></span></form>
         </tr>
     </tbody>
 </table>
