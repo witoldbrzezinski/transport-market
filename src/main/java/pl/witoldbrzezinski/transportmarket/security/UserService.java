@@ -24,10 +24,10 @@ public class UserService {
   public UserEntity registerUser(
       String username, String password, String matchingPassword, String email) {
     UserEntity user = new UserEntity();
-    RoleEntity role = roleRepository.getById(ROLE_USER_ID);
+    RoleEntity role = roleRepository.getReferenceById(ROLE_USER_ID);
     user.setEnabled(ENABLED_ON);
     // TODO change this line
-    user.setCustomer(customerRepository.getById(1L));
+    user.setCustomer(customerRepository.getReferenceById(1L));
     user.setUsername(username);
     if (password.equals(matchingPassword)) {
       user.setPassword(passwordEncoder.encode(password));
@@ -36,7 +36,6 @@ public class UserService {
       throw new RuntimeException("Passwords do not match!");
     }
     user.setEmail(email);
-    //	role.setRole(RoleEnum.ROLE_USER);
     user.setRoles(Set.of(role));
     return userRepository.save(user);
   }

@@ -15,7 +15,7 @@ public class LoginController {
   @Autowired UserService userService;
 
   @GetMapping("/login")
-  public String getloginPage() {
+  public String getLoginPage() {
     return "login.html";
   }
 
@@ -45,7 +45,6 @@ public class LoginController {
         return "redirect:/";
       }
     } catch (Exception exc) {
-      exc.printStackTrace();
       return "registration-error.html";
     }
     return "register.html";
