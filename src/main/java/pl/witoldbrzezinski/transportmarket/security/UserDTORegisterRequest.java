@@ -22,5 +22,4 @@ public class UserDTORegisterRequest {
   @Email @NotNull private String email;
   @NotNull private String password;
   @NotNull @Transient private String matchingPassword;
-  private CustomerEntity customer;
 }

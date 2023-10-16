@@ -1,18 +1,24 @@
 package pl.witoldbrzezinski.transportmarket.security;
 
 import javax.validation.Valid;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.witoldbrzezinski.transportmarket.customer.CustomerRepository;
 
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
 
-  @Autowired UserService userService;
+  private final UserServiceImpl userService;
+
 
   @GetMapping("/login")
   public String getLoginPage() {
@@ -27,16 +33,14 @@ public class LoginController {
 
   @PostMapping("/register")
   public String register(
-      @ModelAttribute("user") @Valid UserEntity user, BindingResult result, Model model)
+      @ModelAttribute("user") @Valid UserDTORegisterRequest user, BindingResult result, Model model)
       throws Exception {
     if (userService.checkIfEmailExist(user.getEmail())
         && userService.checkIfUsernameExist(user.getUsername())) {
       return "registration-existing-user.html";
     }
     try {
-      UserEntity registeredUser =
-          userService.registerUser(
-              user.getUsername(), user.getPassword(), user.getMatchingPassword(), user.getEmail());
+      UserDTORegisterResponse registeredUser = userService.registerNewUser(user);
       if (registeredUser != null
           && !user.getUsername().isBlank()
           && !user.getPassword().isBlank()
@@ -45,6 +49,7 @@ public class LoginController {
         return "redirect:/";
       }
     } catch (Exception exc) {
+      exc.printStackTrace();
       return "registration-error.html";
     }
     return "register.html";

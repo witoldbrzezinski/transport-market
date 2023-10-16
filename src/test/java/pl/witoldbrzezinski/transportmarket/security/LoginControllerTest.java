@@ -12,8 +12,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
-import pl.witoldbrzezinski.transportmarket.security.LoginController;
-import pl.witoldbrzezinski.transportmarket.security.UserService;
 
 @AutoConfigureMockMvc
 @WithMockUser
@@ -23,7 +21,8 @@ public class LoginControllerTest extends IntegrationTestDB {
 
   @Autowired LoginController loginController;
 
-  @Autowired UserService userService;
+  @Autowired
+  UserServiceImpl userService;
   @Autowired private MockMvc mockMvc;
 
   @Test

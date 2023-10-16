@@ -10,5 +10,4 @@ public class UserDTORegisterResponse {
   @NotNull private String username;
   @Email @NotNull private String email;
   @NotNull private String password;
-  private CustomerEntity customer;
 }

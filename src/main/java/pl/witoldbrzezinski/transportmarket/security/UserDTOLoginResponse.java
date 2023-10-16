@@ -15,9 +15,6 @@ import java.util.List;
 @EqualsAndHashCode
 public class UserDTOLoginResponse {
 
-  private static final String TYPE = "Bearer";
-
-  private String token;
   private String username;
   private List<String> roles;
 }

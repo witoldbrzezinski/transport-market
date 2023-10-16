@@ -18,10 +18,9 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import pl.witoldbrzezinski.transportmarket.load.LoadDTOResponse;
-import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
 import pl.witoldbrzezinski.transportmarket.customer.CustomerServiceImpl;
 import pl.witoldbrzezinski.transportmarket.load.LoadServiceImpl;
-import pl.witoldbrzezinski.transportmarket.security.UserService;
+import pl.witoldbrzezinski.transportmarket.security.UserServiceImpl;
 
 @WebMvcTest
 @AutoConfigureTestDatabase
@@ -31,7 +30,8 @@ public class WebLayerTest {
 
   @MockBean CustomerServiceImpl customerService;
   @MockBean LoadServiceImpl loadService;
-  @MockBean UserService userService;
+  @MockBean
+  UserServiceImpl userService;
 
   @Test
   @WithMockUser

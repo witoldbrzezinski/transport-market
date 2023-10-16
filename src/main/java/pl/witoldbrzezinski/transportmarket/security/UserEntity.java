@@ -81,20 +81,9 @@ public class UserEntity {
 
   public UserEntity(
       @NotNull @NotBlank String username,
-      @NotNull @NotBlank String password,
-      int enabled,
-      @NotNull @NotBlank String email,
-      Set<RoleEntity> roles) {
+      @NotNull @NotBlank String email) {
     this.username = username;
-    this.password = password;
-    this.enabled = enabled;
     this.email = email;
-    this.roles = roles;
-  }
-
-  // TODO: delete this
-  public void setRoles(Set<RoleEntity> roles) {
-    this.roles = roles;
   }
 
   @Override
