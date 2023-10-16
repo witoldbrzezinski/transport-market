@@ -29,5 +29,4 @@ public class CustomerDTORequest {
   private String city;
   private String email;
   private String phone;
-
 }

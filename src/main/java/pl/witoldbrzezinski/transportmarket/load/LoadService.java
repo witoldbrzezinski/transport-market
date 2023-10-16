@@ -9,17 +9,15 @@ import java.util.List;
 
 public interface LoadService {
 
-    List<LoadDTOResponse> getAll();
+  List<LoadDTOResponse> getAll();
 
-    LoadDTOResponse getById(Long id);
+  LoadDTOResponse getById(Long id);
 
-    LoadDTOResponse save(LoadDTORequest loadDTORequest);
+  LoadDTOResponse save(LoadDTORequest loadDTORequest);
 
-    LoadDTOResponse update(Long id, LoadDTORequest loadDTORequest);
+  LoadDTOResponse update(Long id, LoadDTORequest loadDTORequest);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    Page<LoadDTOResponse> findPaginated(Pageable pageable);
-
-
+  Page<LoadDTOResponse> findPaginated(Pageable pageable);
 }

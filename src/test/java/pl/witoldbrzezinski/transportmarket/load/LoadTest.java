@@ -9,16 +9,12 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import pl.witoldbrzezinski.transportmarket.load.LoadEntity;
-import pl.witoldbrzezinski.transportmarket.load.LoadRepository;
 import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 
 @DataJpaTest

@@ -18,34 +18,29 @@ import pl.witoldbrzezinski.transportmarket.security.UserService;
 @AutoConfigureMockMvc
 @WithMockUser
 @ActiveProfiles("test")
-//@Sql(value = "/clean-loads.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+// @Sql(value = "/clean-loads.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 public class LoginControllerTest extends IntegrationTestDB {
-	
-	@Autowired
-	LoginController loginController;
-	
-	@Autowired
-	UserService userService;
-	@Autowired
-	private MockMvc mockMvc;
-	
-	@Test
-	public void controllerShouldNotBeNull() {
-		assertThat(loginController).isNotNull();
-	}
-	
-	@Test
-	public void gettingLoginPageShouldReturnLoginView() throws Exception {
-		mockMvc.perform(get("/login"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("login.html"));
-	}
-	
-	@Test
-	public void gettingRegisterPageShouldReturnRegisterView() throws Exception {
-		mockMvc.perform(get("/register"))
-		.andExpect(status().isOk())
-		.andExpect(view().name("register.html"));
-	}
 
+  @Autowired LoginController loginController;
+
+  @Autowired UserService userService;
+  @Autowired private MockMvc mockMvc;
+
+  @Test
+  public void controllerShouldNotBeNull() {
+    assertThat(loginController).isNotNull();
+  }
+
+  @Test
+  public void gettingLoginPageShouldReturnLoginView() throws Exception {
+    mockMvc.perform(get("/login")).andExpect(status().isOk()).andExpect(view().name("login.html"));
+  }
+
+  @Test
+  public void gettingRegisterPageShouldReturnRegisterView() throws Exception {
+    mockMvc
+        .perform(get("/register"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("register.html"));
+  }
 }

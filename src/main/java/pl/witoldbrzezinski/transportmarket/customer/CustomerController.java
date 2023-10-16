@@ -14,20 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/customers")
 @RequiredArgsConstructor
 public class CustomerController {
-	
-	private final CustomerService customerService;
-	
-	@Secured({"ROLE_ADMIN", "ROLE_USER"})
-	@GetMapping()
-	public String getAllCustomers(Model model) {
-		
-		List<CustomerDTOResponse> customers = customerService.getAll();
-		model.addAttribute("customers",customers);
-		return "customer.html";
-	}
 
-	//TODO implements CRUD methods
+  private final CustomerService customerService;
 
+  @Secured({"ROLE_ADMIN", "ROLE_USER"})
+  @GetMapping()
+  public String getAllCustomers(Model model) {
 
+    List<CustomerDTOResponse> customers = customerService.getAll();
+    model.addAttribute("customers", customers);
+    return "customer.html";
+  }
+
+  // TODO implements CRUD methods
 
 }

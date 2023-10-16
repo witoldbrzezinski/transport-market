@@ -12,11 +12,10 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 @Target(TYPE)
 public @interface FieldsValueMatch {
-	
-		String message() default "Fields values don't match!";
-		
-		Class<?>[] groups() default {};
-	    Class<? extends Payload>[] payload() default {};
 
+  String message() default "Fields values don't match!";
 
+  Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
 }

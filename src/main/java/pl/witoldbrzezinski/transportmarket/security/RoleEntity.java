@@ -18,22 +18,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 @Getter
 @Setter
 @NoArgsConstructor
 public class RoleEntity {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@Enumerated(EnumType.STRING)
-	private RoleEnum role;
 
-	public RoleEntity(RoleEnum role) {
-		this.role = role;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
+  @Enumerated(EnumType.STRING)
+  private RoleEnum role;
+
+  public RoleEntity(RoleEnum role) {
+    this.role = role;
+  }
 }
-

@@ -20,33 +20,30 @@ import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
 @ActiveProfiles("test")
 @Sql(value = "/clean-loads.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 public class LoadControllerTest extends IntegrationTestDB {
-	
-	@Autowired
-	private LoadController loadController;
-	
-	@Autowired
-	private LoadServiceImpl loadService;
-	@Autowired
-	private MockMvc mockMvc;
-	
-	@Test
-	public void controllerShouldNotBeNull() {
-		assertThat(loadController).isNotNull();
-	}
-	
-	@Test
-	public void newLoadButtonShouldReturnView() throws Exception {
-		mockMvc.perform(get("/addNewLoad"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("add-load.html"));
-	}
-	
-	@Test
-	public void savingLoadWithNoLoadShouldReturnToAddingLoadPage() throws Exception {
-		mockMvc.perform(post("/confirmLoadAdded"))
-			.andExpect(status().isOk())
-			.andExpect(view().name("add-load.html"));
-	}
-	
 
+  @Autowired private LoadController loadController;
+
+  @Autowired private LoadServiceImpl loadService;
+  @Autowired private MockMvc mockMvc;
+
+  @Test
+  public void controllerShouldNotBeNull() {
+    assertThat(loadController).isNotNull();
+  }
+
+  @Test
+  public void newLoadButtonShouldReturnView() throws Exception {
+    mockMvc
+        .perform(get("/addNewLoad"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("add-load.html"));
+  }
+
+  @Test
+  public void savingLoadWithNoLoadShouldReturnToAddingLoadPage() throws Exception {
+    mockMvc
+        .perform(post("/confirmLoadAdded"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("add-load.html"));
+  }
 }

@@ -4,15 +4,13 @@ import java.util.List;
 
 public interface CustomerService {
 
-    List<CustomerDTOResponse> getAll();
+  List<CustomerDTOResponse> getAll();
 
-    CustomerDTOResponse getById(Long id);
+  CustomerDTOResponse getById(Long id);
 
-    CustomerDTOResponse save(CustomerDTORequest customerDTORequest);
+  CustomerDTOResponse save(CustomerDTORequest customerDTORequest);
 
-    CustomerDTOResponse update(Long id, CustomerDTORequest customerDTORequest);
+  CustomerDTOResponse update(Long id, CustomerDTORequest customerDTORequest);
 
-    void delete(Long id);
-
-
+  void delete(Long id);
 }

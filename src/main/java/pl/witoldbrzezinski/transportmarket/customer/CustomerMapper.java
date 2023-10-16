@@ -8,15 +8,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CustomerMapper {
 
-    private final ModelMapper modelMapper;
+  private final ModelMapper modelMapper;
 
-    CustomerDTOResponse toDTO(CustomerEntity customerEntity){
-        return modelMapper.map(customerEntity,CustomerDTOResponse.class);
-    }
+  CustomerDTOResponse toDTO(CustomerEntity customerEntity) {
+    return modelMapper.map(customerEntity, CustomerDTOResponse.class);
+  }
 
-    CustomerEntity toEntity(CustomerDTORequest customerDTORequest){
-        return modelMapper.map(customerDTORequest,CustomerEntity.class);
-    }
-
-
+  CustomerEntity toEntity(CustomerDTORequest customerDTORequest) {
+    return modelMapper.map(customerDTORequest, CustomerEntity.class);
+  }
 }

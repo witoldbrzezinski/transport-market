@@ -7,12 +7,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppConfiguration {
 
-    @Bean
-    public ModelMapper modelMapper() {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper;
-    }
-
-
-
+  @Bean
+  public ModelMapper modelMapper() {
+    ModelMapper modelMapper = new ModelMapper();
+    return modelMapper;
+  }
 }

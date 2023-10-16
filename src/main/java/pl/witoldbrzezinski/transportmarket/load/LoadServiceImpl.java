@@ -1,8 +1,8 @@
 package pl.witoldbrzezinski.transportmarket.load;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -10,8 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.witoldbrzezinski.transportmarket.security.UserService;
-
-import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor

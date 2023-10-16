@@ -26,24 +26,22 @@ import pl.witoldbrzezinski.transportmarket.security.UserService;
 @WebMvcTest
 @AutoConfigureTestDatabase
 public class WebLayerTest {
-	
-	@Autowired
-	private MockMvc mockMvc;
-	
-	@MockBean
-    CustomerServiceImpl customerService;
-	@MockBean
-    LoadServiceImpl loadService;
-	@MockBean
-	UserService userService;
-	
-	@Test
-	@WithMockUser
-	public void basicTemplateShouldContainAppName() throws Exception {
-		Page<LoadDTOResponse> loadPage = Mockito.mock(Page.class);
-		when(loadService.findPaginated(Mockito.any())).thenReturn(loadPage);
-		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
-				.andExpect(content().string(containsString("Transport Market")));
-	}
 
+  @Autowired private MockMvc mockMvc;
+
+  @MockBean CustomerServiceImpl customerService;
+  @MockBean LoadServiceImpl loadService;
+  @MockBean UserService userService;
+
+  @Test
+  @WithMockUser
+  public void basicTemplateShouldContainAppName() throws Exception {
+    Page<LoadDTOResponse> loadPage = Mockito.mock(Page.class);
+    when(loadService.findPaginated(Mockito.any())).thenReturn(loadPage);
+    this.mockMvc
+        .perform(get("/"))
+        .andDo(print())
+        .andExpect(status().isOk())
+        .andExpect(content().string(containsString("Transport Market")));
+  }
 }
