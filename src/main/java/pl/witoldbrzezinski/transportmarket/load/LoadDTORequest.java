@@ -23,6 +23,8 @@ import pl.witoldbrzezinski.transportmarket.security.UserEntity;
 @EqualsAndHashCode
 public class LoadDTORequest {
 
+  private Long id;
+
   @NotEmpty(message = "Load name cannot be empty")
   private String name;
 
