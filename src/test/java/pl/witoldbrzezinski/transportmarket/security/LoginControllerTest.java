@@ -21,8 +21,7 @@ public class LoginControllerTest extends IntegrationTestDB {
 
   @Autowired LoginController loginController;
 
-  @Autowired
-  UserServiceImpl userService;
+  @Autowired UserServiceImpl userService;
   @Autowired private MockMvc mockMvc;
 
   @Test

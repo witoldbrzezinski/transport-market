@@ -3,9 +3,6 @@ package pl.witoldbrzezinski.transportmarket.load;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerDTORequest;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerDTOResponse;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerEntity;
 
 @Component
 @RequiredArgsConstructor

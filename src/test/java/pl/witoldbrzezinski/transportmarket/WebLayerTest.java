@@ -30,8 +30,7 @@ public class WebLayerTest {
 
   @MockBean CustomerServiceImpl customerService;
   @MockBean LoadServiceImpl loadService;
-  @MockBean
-  UserServiceImpl userService;
+  @MockBean UserServiceImpl userService;
 
   @Test
   @WithMockUser

@@ -4,7 +4,6 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.witoldbrzezinski.transportmarket.customer.CustomerRepository;
@@ -36,9 +35,7 @@ public class UserServiceImpl implements UserService {
       throw new PasswordsNotMatchException();
     }
     UserEntity user =
-        new UserEntity(
-            userDTORegisterRequest.getUsername(),
-            userDTORegisterRequest.getEmail());
+        new UserEntity(userDTORegisterRequest.getUsername(), userDTORegisterRequest.getEmail());
     RoleEntity role = roleRepository.getReferenceById(ROLE_USER_ID);
     user.setEnabled(ENABLED_ON);
     user.setRoles(Set.of(role));

@@ -1,17 +1,13 @@
 package pl.witoldbrzezinski.transportmarket.security;
 
 import javax.validation.Valid;
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerRepository;
 
 @Controller
 @RequiredArgsConstructor
@@ -49,7 +45,6 @@ public class LoginController {
         return "redirect:/";
       }
     } catch (Exception exc) {
-      exc.printStackTrace();
       return "registration-error.html";
     }
     return "register.html";

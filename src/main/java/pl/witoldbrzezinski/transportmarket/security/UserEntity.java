@@ -61,9 +61,9 @@ public class UserEntity {
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
-          name = "user_role",
-          joinColumns = @JoinColumn(name = "user_id"),
-          inverseJoinColumns = @JoinColumn(name = "role_id"))
+      name = "user_role",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<RoleEntity> roles = new HashSet<>();
 
   @ManyToOne
@@ -79,9 +79,7 @@ public class UserEntity {
 
   @Version private Long version;
 
-  public UserEntity(
-      @NotNull @NotBlank String username,
-      @NotNull @NotBlank String email) {
+  public UserEntity(@NotNull @NotBlank String username, @NotNull @NotBlank String email) {
     this.username = username;
     this.email = email;
   }

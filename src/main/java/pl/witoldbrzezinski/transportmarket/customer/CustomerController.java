@@ -1,9 +1,7 @@
 package pl.witoldbrzezinski.transportmarket.customer;
 
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +23,5 @@ public class CustomerController {
     model.addAttribute("customers", customers);
     return "customer.html";
   }
-
-  // TODO implements CRUD methods
-
+  
 }

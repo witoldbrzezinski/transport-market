@@ -1,11 +1,8 @@
 package pl.witoldbrzezinski.transportmarket.load;
 
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerDTORequest;
-import pl.witoldbrzezinski.transportmarket.customer.CustomerDTOResponse;
-
-import java.util.List;
 
 public interface LoadService {
 

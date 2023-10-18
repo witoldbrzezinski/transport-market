@@ -1,6 +1,7 @@
 package pl.witoldbrzezinski.transportmarket.load;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -70,9 +71,12 @@ public class LoadServiceImpl implements LoadService {
     int currentPage = pageable.getPageNumber();
     int startItem = currentPage * pageSize;
     List<LoadDTOResponse> list;
-    List<LoadDTOResponse> loads = loadRepository.findAll().stream().map(loadMapper::toDTO).toList();
-    // TODO fix sorting
- //   loads.sort(Comparator.comparing(LoadDTOResponse::getId));
+    List<LoadDTOResponse> loads =
+        new java.util.ArrayList<>(
+            loadRepository.findAll().stream().map(loadMapper::toDTO).toList());
+    if (!loads.isEmpty()) {
+      loads.sort(Comparator.comparing(LoadDTOResponse::getId));
+    }
     if (loads.size() < startItem) {
       list = Collections.emptyList();
     } else {
@@ -80,6 +84,6 @@ public class LoadServiceImpl implements LoadService {
       int toIndex = Math.min(startItem + pageSize, loads.size());
       list = loads.subList(startItem, toIndex);
     }
-      return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), loads.size());
+    return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), loads.size());
   }
 }
