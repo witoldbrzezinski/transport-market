@@ -49,7 +49,8 @@ public class CustomerEntity {
 
   @Version private Long version;
 
-  public CustomerEntity(String name, String country, String city, String email, String phone) {
+  public CustomerEntity(Long id, String name, String country, String city, String email,String phone) {
+    this.id = id;
     this.name = name;
     this.country = country;
     this.city = city;

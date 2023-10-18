@@ -14,7 +14,4 @@ public class CustomerMapper {
     return modelMapper.map(customerEntity, CustomerDTOResponse.class);
   }
 
-  CustomerEntity toEntity(CustomerDTORequest customerDTORequest) {
-    return modelMapper.map(customerDTORequest, CustomerEntity.class);
-  }
 }

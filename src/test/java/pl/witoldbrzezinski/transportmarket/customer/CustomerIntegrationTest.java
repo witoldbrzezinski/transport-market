@@ -17,10 +17,8 @@ import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
 @WithMockUser
 @ActiveProfiles("test")
 @Sql(value = "/clean-customers.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-public class CustomerControllerTest extends IntegrationTestDB {
+public class CustomerIntegrationTest extends IntegrationTestDB {
 
-  @Autowired CustomerController customerController;
-  @Autowired CustomerServiceImpl customerService;
   @Autowired private MockMvc mockMvc;
 
   @Test
