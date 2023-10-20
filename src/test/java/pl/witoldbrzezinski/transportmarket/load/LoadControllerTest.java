@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,18 +22,21 @@ import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
 @Sql(value = "/clean-loads.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 public class LoadControllerTest extends IntegrationTestDB {
 
-  @Autowired private LoadController loadController;
-
-  @Autowired private LoadServiceImpl loadService;
   @Autowired private MockMvc mockMvc;
 
   @Test
-  public void controllerShouldNotBeNull() {
-    assertThat(loadController).isNotNull();
+  @SneakyThrows
+  public void startNewViewShouldWithDefaultEndpoint() {
+    mockMvc
+            .perform(get("/"))
+            .andExpect(status().isOk())
+            .andExpect(view().name("index.html"));
   }
 
+
   @Test
-  public void newLoadButtonShouldReturnView() throws Exception {
+  @SneakyThrows
+  public void newLoadButtonShouldReturnView() {
     mockMvc
         .perform(get("/addNewLoad"))
         .andExpect(status().isOk())
@@ -40,10 +44,14 @@ public class LoadControllerTest extends IntegrationTestDB {
   }
 
   @Test
-  public void savingLoadWithNoLoadShouldReturnToAddingLoadPage() throws Exception {
+  @SneakyThrows
+  public void savingLoadShouldRedirectToAddingLoadPage(){
     mockMvc
         .perform(post("/confirmLoadAdded"))
         .andExpect(status().isOk())
         .andExpect(view().name("add-load.html"));
   }
+
+
+
 }

@@ -66,6 +66,7 @@ public class LoadEntity {
   @Version private Long version;
 
   public LoadEntity(
+      Long id,
       String name,
       LocalDateTime loadingDate,
       String loadingCity,
@@ -75,8 +76,8 @@ public class LoadEntity {
       String unloadingPostcode,
       BigDecimal weight,
       String loadType,
-      BigDecimal price,
-      UserEntity user) {
+      BigDecimal price) {
+    this.id = id;
     this.name = name;
     this.loadingDate = loadingDate;
     this.loadingCity = loadingCity;
@@ -87,7 +88,6 @@ public class LoadEntity {
     this.weight = weight;
     this.loadType = loadType;
     this.price = price;
-    this.user = user;
   }
 
   @Override

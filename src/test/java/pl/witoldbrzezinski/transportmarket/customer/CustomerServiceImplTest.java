@@ -29,32 +29,6 @@ public class CustomerServiceImplTest {
     customerService = new CustomerServiceImpl(customerRepository, customerMapper);
   }
 
-  /*
-  @Test
-  public void createNewCustomerShouldNotBeNull() {
-    CustomerEntity customerEntity = customerRepository.save(customer);
-    assertNotNull(customerEntity);
-  }
-
-  @Test
-  public void searchingCustomerByNameShouldFindCustomer() {
-    String name = "Customer";
-    assertThat(customer.getName()).isEqualTo(name);
-  }
-
-  @Test
-  public void searchingCustomerWithWrongNameShouldNotFindCustomer() {
-    String name = "Wrong name";
-    CustomerEntity customer = customerRepository.findByName(name);
-    assertNull(customer);
-  }
-
-  @Test
-  public void listOfCustomersShouldHasSizeGreaterThanZero() {
-    List<CustomerEntity> customers = new ArrayList<>();
-    customers.add(customer);
-    assertThat(customers).size().isGreaterThan(0);
-  }*/
 
   @Test
   void shouldGetListOfAllCustomers() {

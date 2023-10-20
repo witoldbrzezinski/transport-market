@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import pl.witoldbrzezinski.transportmarket.security.UserServiceImpl;
+import pl.witoldbrzezinski.transportmarket.security.UserService;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +18,7 @@ public class LoadServiceImpl implements LoadService {
 
   private final LoadRepository loadRepository;
   private final LoadMapper loadMapper;
-  private final UserServiceImpl userService;
+  private final UserService userService;
 
   @Override
   public List<LoadDTOResponse> getAll() {
