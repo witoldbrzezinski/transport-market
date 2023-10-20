@@ -32,5 +32,4 @@ public class DataSourceConfig {
     dataSourceBuilder.password(password);
     return dataSourceBuilder.build();
   }
-
 }

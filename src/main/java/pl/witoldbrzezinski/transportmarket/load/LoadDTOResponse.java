@@ -36,7 +36,18 @@ public class LoadDTOResponse {
   private BigDecimal price;
   private UserEntity user;
 
-  public LoadDTOResponse(Long id, String name, LocalDateTime loadingDate, String loadingCity, String loadingPostcode, LocalDateTime unloadingDate, String unloadingCity, String unloadingPostcode, BigDecimal weight, String loadType, BigDecimal price) {
+  public LoadDTOResponse(
+      Long id,
+      String name,
+      LocalDateTime loadingDate,
+      String loadingCity,
+      String loadingPostcode,
+      LocalDateTime unloadingDate,
+      String unloadingCity,
+      String unloadingPostcode,
+      BigDecimal weight,
+      String loadType,
+      BigDecimal price) {
     this.id = id;
     this.name = name;
     this.loadingDate = loadingDate;

@@ -15,7 +15,6 @@ public class LoginController {
 
   private final UserServiceImpl userService;
 
-
   @GetMapping("/login")
   public String getLoginPage() {
     return "login.html";

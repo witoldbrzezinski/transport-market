@@ -144,64 +144,65 @@ public class LoadServiceImplTest {
   }
 
   @Test
-  void shouldUpdateLoad(){
+  void shouldUpdateLoad() {
     // given
     LoadDTORequest loadDTORequest =
-            new LoadDTORequest(
-                    LOAD_ID,
-                    LOAD_NAME,
-                    LocalDateTime.now(clock).plusDays(1),
-                    LOADING_CITY,
-                    LOADING_POSTCODE,
-                    LocalDateTime.now(clock).plusDays(2),
-                    UNLOADING_CITY,
-                    UNLOADING_POSTCODE,
-                    new BigDecimal(LOAD_WEIGHT),
-                    LOAD_TYPE,
-                    new BigDecimal(LOAD_PRICE));
+        new LoadDTORequest(
+            LOAD_ID,
+            LOAD_NAME,
+            LocalDateTime.now(clock).plusDays(1),
+            LOADING_CITY,
+            LOADING_POSTCODE,
+            LocalDateTime.now(clock).plusDays(2),
+            UNLOADING_CITY,
+            UNLOADING_POSTCODE,
+            new BigDecimal(LOAD_WEIGHT),
+            LOAD_TYPE,
+            new BigDecimal(LOAD_PRICE));
     LoadEntity load =
-            new LoadEntity(
-                    LOAD_ID,
-                    LOAD_NAME,
-                    LocalDateTime.now(clock).plusDays(1),
-                    LOADING_CITY,
-                    LOADING_POSTCODE,
-                    LocalDateTime.now(clock).plusDays(2),
-                    UNLOADING_CITY,
-                    UNLOADING_POSTCODE,
-                    new BigDecimal(LOAD_WEIGHT),
-                    LOAD_TYPE,
-                    new BigDecimal(LOAD_PRICE));
-    //when
+        new LoadEntity(
+            LOAD_ID,
+            LOAD_NAME,
+            LocalDateTime.now(clock).plusDays(1),
+            LOADING_CITY,
+            LOADING_POSTCODE,
+            LocalDateTime.now(clock).plusDays(2),
+            UNLOADING_CITY,
+            UNLOADING_POSTCODE,
+            new BigDecimal(LOAD_WEIGHT),
+            LOAD_TYPE,
+            new BigDecimal(LOAD_PRICE));
+    // when
     load.setName(NEW_NAME);
     when(loadRepository.findById(LOAD_ID)).thenReturn(Optional.of(load));
     when(loadRepository.save(loadMapper.toEntity(loadDTORequest))).thenReturn(load);
-    //then
-    assertThat(loadService.update(LOAD_ID,loadDTORequest)).usingRecursiveComparison().isEqualTo(loadMapper.toDTO(load));
+    // then
+    assertThat(loadService.update(LOAD_ID, loadDTORequest))
+        .usingRecursiveComparison()
+        .isEqualTo(loadMapper.toDTO(load));
   }
 
   @Test
-  void shouldDeleteBook(){
-    //given
+  void shouldDeleteBook() {
+    // given
     LoadEntity load =
-            new LoadEntity(
-                    LOAD_ID,
-                    LOAD_NAME,
-                    LocalDateTime.now(clock).plusDays(1),
-                    LOADING_CITY,
-                    LOADING_POSTCODE,
-                    LocalDateTime.now(clock).plusDays(2),
-                    UNLOADING_CITY,
-                    UNLOADING_POSTCODE,
-                    new BigDecimal(LOAD_WEIGHT),
-                    LOAD_TYPE,
-                    new BigDecimal(LOAD_PRICE));
+        new LoadEntity(
+            LOAD_ID,
+            LOAD_NAME,
+            LocalDateTime.now(clock).plusDays(1),
+            LOADING_CITY,
+            LOADING_POSTCODE,
+            LocalDateTime.now(clock).plusDays(2),
+            UNLOADING_CITY,
+            UNLOADING_POSTCODE,
+            new BigDecimal(LOAD_WEIGHT),
+            LOAD_TYPE,
+            new BigDecimal(LOAD_PRICE));
     load.setDeleted(false);
-    //when
+    // when
     when(loadRepository.findById(LOAD_ID)).thenReturn(Optional.of(load));
     loadService.delete(LOAD_ID);
-    //then
+    // then
     assertTrue(load.isDeleted());
-
   }
 }

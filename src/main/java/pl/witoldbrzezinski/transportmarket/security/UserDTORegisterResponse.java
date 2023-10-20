@@ -1,6 +1,5 @@
 package pl.witoldbrzezinski.transportmarket.security;
 
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 

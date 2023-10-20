@@ -21,7 +21,6 @@ public class CustomerServiceImplTest {
   private CustomerMapper customerMapper;
   private CustomerService customerService;
 
-
   @BeforeEach
   public void init() {
     customerRepository = mock(CustomerRepository.class);
@@ -29,18 +28,21 @@ public class CustomerServiceImplTest {
     customerService = new CustomerServiceImpl(customerRepository, customerMapper);
   }
 
-
   @Test
   void shouldGetListOfAllCustomers() {
-    //given
+    // given
     CustomerEntity customerEntity =
         new CustomerEntity(
-                ID, CUSTOMER_NAME, CUSTOMER_COUNTRY, CUSTOMER_CITY, CUSTOMER_EMAIL, CUSTOMER_PHONE);
+            ID, CUSTOMER_NAME, CUSTOMER_COUNTRY, CUSTOMER_CITY, CUSTOMER_EMAIL, CUSTOMER_PHONE);
     List<CustomerEntity> customers = List.of(customerEntity);
-    CustomerDTOResponse customerDTOResponse = new CustomerDTOResponse(ID, CUSTOMER_NAME, CUSTOMER_COUNTRY, CUSTOMER_CITY, CUSTOMER_EMAIL, CUSTOMER_PHONE);
-    //when
+    CustomerDTOResponse customerDTOResponse =
+        new CustomerDTOResponse(
+            ID, CUSTOMER_NAME, CUSTOMER_COUNTRY, CUSTOMER_CITY, CUSTOMER_EMAIL, CUSTOMER_PHONE);
+    // when
     when(customerRepository.findAll()).thenReturn(customers);
-    //then
-    assertThat(customerDTOResponse).usingRecursiveComparison().isEqualTo(customerService.getAll().get(0));
+    // then
+    assertThat(customerDTOResponse)
+        .usingRecursiveComparison()
+        .isEqualTo(customerService.getAll().get(0));
   }
 }

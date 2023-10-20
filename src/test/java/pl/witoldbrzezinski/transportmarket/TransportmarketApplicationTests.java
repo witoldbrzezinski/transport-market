@@ -8,7 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 class TransportmarketApplicationTests {
 
-
   @Test
   public void main() {
     TransportmarketApplication.main(new String[] {});

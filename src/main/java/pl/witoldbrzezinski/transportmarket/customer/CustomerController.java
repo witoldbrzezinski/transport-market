@@ -23,5 +23,4 @@ public class CustomerController {
     model.addAttribute("customers", customers);
     return "customer.html";
   }
-  
 }

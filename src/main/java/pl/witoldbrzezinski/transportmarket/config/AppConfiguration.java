@@ -10,11 +10,11 @@ public class AppConfiguration {
 
   @Bean
   public ModelMapper modelMapper() {
-      return new ModelMapper();
+    return new ModelMapper();
   }
 
-    @Bean
-    public Clock getClock() {
-        return Clock.systemDefaultZone();
-    }
+  @Bean
+  public Clock getClock() {
+    return Clock.systemDefaultZone();
+  }
 }

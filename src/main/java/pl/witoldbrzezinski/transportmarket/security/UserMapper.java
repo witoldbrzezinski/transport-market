@@ -13,5 +13,4 @@ public class UserMapper {
   UserDTORegisterResponse registerRequestToDTO(UserEntity userEntity) {
     return modelMapper.map(userEntity, UserDTORegisterResponse.class);
   }
-
 }

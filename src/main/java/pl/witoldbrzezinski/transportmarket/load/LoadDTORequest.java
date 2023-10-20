@@ -64,7 +64,18 @@ public class LoadDTORequest {
 
   private UserEntity user;
 
-  public LoadDTORequest(Long id, String name, LocalDateTime loadingDate, String loadingCity, String loadingPostcode, LocalDateTime unloadingDate, String unloadingCity, String unloadingPostcode, BigDecimal weight, String loadType, BigDecimal price) {
+  public LoadDTORequest(
+      Long id,
+      String name,
+      LocalDateTime loadingDate,
+      String loadingCity,
+      String loadingPostcode,
+      LocalDateTime unloadingDate,
+      String unloadingCity,
+      String unloadingPostcode,
+      BigDecimal weight,
+      String loadType,
+      BigDecimal price) {
     this.id = id;
     this.name = name;
     this.loadingDate = loadingDate;

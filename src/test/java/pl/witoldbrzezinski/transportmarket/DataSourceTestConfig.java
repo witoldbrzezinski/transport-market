@@ -9,21 +9,21 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {
-        "pl.witoldbrzezinski.transportmarket",
-})
+@EnableJpaRepositories(
+    basePackages = {
+      "pl.witoldbrzezinski.transportmarket",
+    })
 @EnableTransactionManagement
 public class DataSourceTestConfig {
 
-    @Bean
-    @Profile("test")
-    public DataSource getDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/transportmarket_test");
-        dataSource.setUsername("test");
-        dataSource.setPassword("test");
-        return dataSource;
-    }
-
+  @Bean
+  @Profile("test")
+  public DataSource getDataSource() {
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setDriverClassName("org.postgresql.Driver");
+    dataSource.setUrl("jdbc:postgresql://localhost:5432/transportmarket_test");
+    dataSource.setUsername("test");
+    dataSource.setPassword("test");
+    return dataSource;
+  }
 }

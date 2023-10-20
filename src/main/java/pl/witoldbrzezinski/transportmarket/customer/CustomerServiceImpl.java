@@ -14,5 +14,4 @@ public class CustomerServiceImpl implements CustomerService {
   public List<CustomerDTOResponse> getAll() {
     return customerRepository.findAll().stream().map(customerMapper::toDTO).toList();
   }
-
 }
