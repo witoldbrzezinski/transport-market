@@ -84,6 +84,18 @@ public class UserEntity {
     this.email = email;
   }
 
+  public UserEntity(Long id, String username, String password,String matchingPassword, String email) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.matchingPassword = matchingPassword;
+    this.email = email;
+  }
+
+  public void addRole(RoleEntity roleEntity) {
+    this.roles.add(roleEntity);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

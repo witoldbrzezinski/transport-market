@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,4 +22,5 @@ public class UserDTORegisterRequest {
   @Email @NotNull private String email;
   @NotNull private String password;
   @NotNull @Transient private String matchingPassword;
+
 }

@@ -10,24 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.witoldbrzezinski.transportmarket.IntegrationTestDB;
 
 @AutoConfigureMockMvc
 @WithMockUser
 @ActiveProfiles("test")
-// @Sql(value = "/clean-loads.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-public class LoginControllerTest extends IntegrationTestDB {
+public class LoginIntegrationTests extends IntegrationTestDB {
 
-  @Autowired LoginController loginController;
-
-  @Autowired UserServiceImpl userService;
   @Autowired private MockMvc mockMvc;
 
-  @Test
-  public void controllerShouldNotBeNull() {
-    assertThat(loginController).isNotNull();
-  }
 
   @Test
   public void gettingLoginPageShouldReturnLoginView() throws Exception {

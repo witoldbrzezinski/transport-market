@@ -1,5 +1,6 @@
 package pl.witoldbrzezinski.transportmarket.security;
 
+import java.util.HashSet;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -38,7 +39,9 @@ public class UserServiceImpl implements UserService {
         new UserEntity(userDTORegisterRequest.getUsername(), userDTORegisterRequest.getEmail());
     RoleEntity role = roleRepository.getReferenceById(ROLE_USER_ID);
     user.setEnabled(ENABLED_ON);
-    user.setRoles(Set.of(role));
+    Set<RoleEntity> roles = new HashSet<>();
+    roles.add(role);
+    user.setRoles(roles);
     user.setCustomer(customerRepository.getReferenceById(STARTING_CUSTOMER_ID));
     user.setPassword(passwordEncoder.encode(userDTORegisterRequest.getPassword()));
     user.setMatchingPassword(userDTORegisterRequest.getMatchingPassword());

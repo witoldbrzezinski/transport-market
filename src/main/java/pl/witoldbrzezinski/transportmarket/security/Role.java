@@ -1,6 +1,6 @@
 package pl.witoldbrzezinski.transportmarket.security;
 
-public enum RoleEnum {
+public enum Role {
   ROLE_USER,
   ROLE_ADMIN
 }
