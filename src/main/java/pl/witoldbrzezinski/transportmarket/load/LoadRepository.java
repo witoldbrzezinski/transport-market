@@ -12,4 +12,5 @@ public interface LoadRepository extends JpaRepository<LoadEntity, Long> {
   @NotNull
   Page<LoadEntity> findAll(@NotNull Pageable pageable);
 
+
 }
