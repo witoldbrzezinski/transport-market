@@ -1,7 +1,16 @@
-TRANSPORT MARKET
+### TRANSPORT MARKET #
+
 Simple app that allows you to organize transportation of your loads.
 
-App is written in Java language on back-end and with HTML and CSS on front-end. There is a possibility to register user and then login to the app. On the main page there is a list of load's details. You can contact load's owner via email to make business contract. App also contains list of all customers and Your's profile basic data. 
+App is written in Java language on back-end and with HTML and CSS on front-end. There is a possibility to register user and then login to the app. On the main page there is a list of load's details. You can contact load's owner via email to make business contract. App also contains list of all customers and Yours profile basic data. 
+
+### Technologies : #
+
+- Java 17
+- Docker (last stable version)
+- Spring Boot 2.7.16
+- Maven 3.9.2
+
 
 ### Installation : #
 
@@ -26,6 +35,21 @@ CREATE USER test WITH PASSWORD 'test';
 ```
 CREATE DATABASE transportmarket;
 CREATE DATABASE transportmarket_test;
+```
+### Run : #
+
+There are two profiles for app development and testing:
+- dev
+- test
+
+To run application for development purpose use VM option:
+```
+-Dspring.profiles.active=dev
+```
+
+To run application for testing purpose use VM option:
+```
+-Dspring.profiles.active=test
 ```
 
 MIT License
